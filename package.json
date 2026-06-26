@@ -14,6 +14,8 @@
     "publish:preview": "node integrations/stylus/publish-products.mjs --preview",
     "publish:stylus": "node integrations/stylus/publish-products.mjs --publish",
     "test:publisher:sample": "node integrations/stylus/verify-publisher-sample.mjs",
-    "test:images:sample": "node integrations/stylus/verify-image-manager-sample.mjs"
+    "test:images:sample": "node integrations/stylus/verify-image-manager-sample.mjs",
+    "pilot:create": "node integrations/stylus/create-pilot-batch.mjs",
+    "test:pilot:sample": "node integrations/stylus/verify-pilot-sample.mjs"
   }
 }
