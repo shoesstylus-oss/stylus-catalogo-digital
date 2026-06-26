@@ -8,6 +8,7 @@
     "publish:products": "node scripts/import-products.mjs --publish",
     "validate:products": "node scripts/import-products.mjs --validate-only",
     "import:kordata": "node integrations/kordata/import-kordata-inventory.mjs",
-    "test:kordata:sample": "node integrations/kordata/verify-kordata-sample.mjs"
+    "test:kordata:sample": "node integrations/kordata/verify-kordata-sample.mjs",
+    "enrich:products": "node integrations/stylus/enrich-products.mjs"
   }
 }
