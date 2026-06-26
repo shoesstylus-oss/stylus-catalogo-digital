@@ -1,0 +1,70 @@
+{
+  "brand": {
+    "name": "Tiendas STYLUS",
+    "slogan": "Tu proveedor mayorista de confianza"
+  },
+  "nav": {
+    "catalog": "Catálogo",
+    "backToCatalog": "Volver al catálogo"
+  },
+  "actions": {
+    "whatsapp": "WhatsApp",
+    "buyWhatsapp": "Comprar por WhatsApp",
+    "viewMore": "Ver más",
+    "clearFilters": "Limpiar filtros",
+    "removeFilter": "Quitar filtro"
+  },
+  "catalog": {
+    "eyebrow": "Plataforma comercial",
+    "title": "STYLUS Mayorista",
+    "subtitle": "Consulta productos, filtra colecciones y compra directo por WhatsApp desde una base preparada para crecer.",
+    "resultsEyebrow": "Resultados",
+    "resultsTitle": "Productos disponibles",
+    "empty": "No encontramos productos con esos criterios.",
+    "oneResult": "1 producto encontrado",
+    "manyResults": "{count} productos encontrados"
+  },
+  "filters": {
+    "eyebrow": "Filtros",
+    "title": "Explorar productos",
+    "searchLabel": "Buscar productos",
+    "searchPlaceholder": "Buscar por nombre, SKU, marca, color o categoría",
+    "brand": "Marca",
+    "category": "Categoría",
+    "sizes": "Tallas",
+    "color": "Color",
+    "gender": "Género",
+    "new": "Novedades",
+    "featured": "Destacados",
+    "newOnly": "Solo nuevos",
+    "featuredOnly": "Solo destacados"
+  },
+  "labels": {
+    "new": "Nuevo",
+    "featured": "Destacado",
+    "sku": "SKU",
+    "sizes": "Tallas",
+    "status": "Estado",
+    "wholesale": "Mayorista",
+    "related": "Productos relacionados"
+  },
+  "metrics": {
+    "products": "productos",
+    "brands": "marcas",
+    "featured": "destacados"
+  },
+  "detail": {
+    "notFound": "Producto no encontrado",
+    "notFoundCopy": "Regresa al catálogo para elegir una referencia disponible.",
+    "gallery": "Galería del producto",
+    "description": "Descripción"
+  },
+  "footer": {
+    "copy": "Tiendas STYLUS - Plataforma comercial mayorista."
+  },
+  "whatsapp": {
+    "phone": "50589468126",
+    "catalogMessage": "Hola STYLUS, quiero información del catálogo mayorista.",
+    "productMessage": "Hola STYLUS, quiero información para pedido mayorista de {name} ({sku})."
+  }
+}
