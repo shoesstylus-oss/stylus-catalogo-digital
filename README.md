@@ -4,47 +4,29 @@ Repositorio oficial de la **Plataforma Comercial STYLUS**, una base web estátic
 
 ## Objetivo
 
-Construir una plataforma comercial moderna para Tiendas STYLUS. La Fase 3 deja de tratar el proyecto como un catálogo aislado y lo organiza como una aplicación modular preparada para futuras funciones comerciales.
+Construir una plataforma comercial moderna para Tiendas STYLUS. El sitio público se mantiene estable en `data/products.json`, mientras la digitalización del Catálogo Maestro Canva STYLUS 2026 avanza en una infraestructura separada dentro de `catalog-data/`.
 
 ## Estado actual
 
-### Fase 1
+### Plataforma pública
 
-- Catálogo web responsive.
-- Vista de productos con imagen, nombre, categoría, tallas y precio.
-- Filtros por categoría y búsqueda.
-- Botón de contacto por WhatsApp.
-
-### Fase 2
-
-- Soporte para imágenes cargadas desde `assets/products/`.
+- Catálogo web responsive compatible con GitHub Pages.
 - Logo oficial cargado desde `assets/logo/`.
-- Preparación para publicar con GitHub Pages.
+- Filtros profesionales por marca, categoría, tallas, color, género, novedades y destacados.
+- Búsqueda instantánea con coincidencias resaltadas.
+- Tarjetas comerciales Premium con SKU, precio, WhatsApp y Ver más.
+- Página individual de producto con galería, descripción, tallas, SKU, compra por WhatsApp y relacionados.
+- Preparación PWA con `manifest.json` y `sw.js`.
+- SEO, Open Graph, Twitter Cards, `robots.txt` y `sitemap.xml`.
 
-### Fase 3
+### Etapa 1 de digitalización comercial
 
-- Reestructura modular en `src/components/`, `src/pages/`, `src/utils/`, `data/`, `pages/` y `assets/`.
-- Migra productos a `data/products.json`.
-- Agrega filtros profesionales por marca, categoría, tallas, color, género, novedades y destacados.
-- Agrega búsqueda instantánea con coincidencias resaltadas.
-- Agrega tarjetas comerciales Premium con etiquetas, SKU, precio, WhatsApp y Ver más.
-- Agrega página individual de producto con galería, descripción, tallas, SKU, compra por WhatsApp y relacionados.
-- Agrega preparación PWA con `manifest.json` y `sw.js`.
-- Centraliza cadenas de interfaz en `data/i18n.es.json`.
-
-### Fase 5
-
-- Organiza el catálogo comercial en Calzado Deportivo, Calzado Casual, Ropa Deportiva y Accesorios.
-- Prepara marcas comerciales para filtros: Nike, Adidas, New Balance, Puma, Reebok, Under Armour, STYLUS y Otras.
-- Mejora presentación visual, SEO, accesibilidad y rendimiento sin agregar funciones de carrito, login ni inventario.
-
-### Fase 6
-
-- Agrega `data/import/products.master.csv` como fuente maestra para migrar productos desde el Catálogo Maestro Canva STYLUS 2026.
-- Agrega script de importación para generar borradores en `data/import/products.generated.json` sin reemplazar el catálogo público.
-- Mantiene `data/products.json` como catálogo público vigente hasta que los productos estén listos para publicación.
-- Genera reportes en `reports/import-report.json` y `reports/import-report.md`.
-- Documenta el flujo sostenible de migración en `docs/migracion-canva.md`.
+- Crea `catalog-data/` como base comercial oficial para digitalizar el Catálogo Maestro Canva STYLUS 2026.
+- Organiza el CSV maestro, imágenes pendientes/procesadas, exportaciones y reportes.
+- Prepara trabajo por lotes: Lote 01, Lote 02, Lote 03, etc.
+- Agrega estados `migration_status`, `image_status` y `quality_score`.
+- Genera reportes de resumen, datos faltantes, SKU duplicados y avance.
+- Mantiene `data/products.json` sin modificaciones.
 
 ## Estructura
 
@@ -53,18 +35,33 @@ stylus-catalogo-digital/
 |-- assets/
 |   |-- logo/
 |   `-- products/
+|-- catalog-data/
+|   |-- csv/
+|   |   `-- products.master.csv
+|   |-- exports/
+|   |   `-- products.generated.json
+|   |-- images/
+|   |   |-- pending/
+|   |   `-- processed/
+|   `-- reports/
+|       |-- duplicate-skus.md
+|       |-- migration-progress.md
+|       |-- migration-summary.md
+|       `-- missing-data.md
 |-- data/
-|   |-- import/
 |   |-- i18n.es.json
-|   `-- products.json
+|   |-- products.json
+|   `-- products.template.json
 |-- docs/
 |   |-- arquitectura.md
-|   |-- fase-3.md
-|   `-- github-pages.md
-|-- reports/
-|-- scripts/
+|   |-- carga-productos.md
+|   |-- migration-dashboard.md
+|   |-- migracion-canva.md
+|   `-- publicacion.md
 |-- pages/
 |   `-- product.html
+|-- scripts/
+|   `-- import-products.mjs
 |-- src/
 |   |-- components/
 |   |-- pages/
@@ -76,56 +73,28 @@ stylus-catalogo-digital/
 `-- README.md
 ```
 
-## Actualizar productos
+## Digitalizar productos
 
-Para cargas reales, edita `data/import/products.master.csv` y ejecuta:
+Edita `catalog-data/csv/products.master.csv` y ejecuta:
 
 ```bash
 npm run import:products
 ```
 
-Este comando genera `data/import/products.generated.json` como borrador de migración. No reemplaza el catálogo público.
+Este comando genera `catalog-data/exports/products.generated.json` y reportes en `catalog-data/reports/`. No reemplaza el catálogo público.
 
-Para validar sin alterar `data/products.json`, ejecuta:
+Para validar sin generar exportación:
 
 ```bash
 npm run validate:products
 ```
 
-Para publicar en `data/products.json`, usa solamente:
-
-```bash
-npm run publish:products
-```
-
-La publicación se bloquea si existen errores o advertencias críticas de categoría, marca, color o imagen. Cada producto debe incluir:
-
-- `id`
-- `sku`
-- `nombre`
-- `marca`
-- `categoría`
-- `género`
-- `color`
-- `tallas`
-- `precio`
-- `precio_mayorista`
-- `estado`
-- `nuevo`
-- `destacado`
-- `imagen`
-- `descripción`
-
-Las imágenes deben vivir en `assets/products/` y se referencian así:
-
-```json
-"imagen": "assets/products/nombre-del-producto.webp"
-```
+El comando `npm run publish:products` queda conservado, pero en esta Etapa 1 bloquea la publicación para proteger `data/products.json`.
 
 ## Logo oficial
 
 El logotipo oficial de STYLUS vive en `assets/logo/`. Para cambiar el logo en el futuro basta reemplazar los archivos manteniendo los mismos nombres. No se deben usar logos temporales, recreados, redibujados ni generados como placeholder.
 
-## Publicación
+## Documentación
 
-Ver [docs/publicacion.md](docs/publicacion.md), [docs/carga-productos.md](docs/carga-productos.md), [docs/migracion-canva.md](docs/migracion-canva.md), [docs/github-pages.md](docs/github-pages.md) y [docs/fase-3.md](docs/fase-3.md).
+Consulta [docs/migracion-canva.md](docs/migracion-canva.md), [docs/migration-dashboard.md](docs/migration-dashboard.md), [docs/carga-productos.md](docs/carga-productos.md), [docs/publicacion.md](docs/publicacion.md), [docs/arquitectura.md](docs/arquitectura.md) y [docs/github-pages.md](docs/github-pages.md).

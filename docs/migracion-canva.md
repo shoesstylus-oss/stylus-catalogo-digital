@@ -1,148 +1,106 @@
 # Migración del Catálogo Maestro Canva STYLUS 2026
 
-Esta guía explica cómo convertir información comercial del **Catálogo Maestro STYLUS 2026** en datos estructurados para la plataforma digital, sin reemplazar el catálogo público con productos incompletos y sin integrar todavía Canva API, login, carrito, ERP, panel administrativo ni base de datos externa.
+Esta guía explica cómo convertir información comercial del **Catálogo Maestro STYLUS 2026** en datos estructurados para la plataforma digital, sin reemplazar el catálogo público con productos incompletos.
 
-## Fuente inicial
+## Base oficial de trabajo
 
-La información inicial se obtuvo desde el diseño de Canva `DAHLitKfdE0`, usando el contenido de texto visible del Catálogo Maestro STYLUS 2026.
-
-En esta fase se cargaron 10 referencias visibles:
-
-- `T22-1`
-- `T21-1`
-- `T655-18`
-- `K998-3`
-- `K991-2`
-- `K998-2`
-- `K997-3`
-- `K997-1`
-- `K998-1`
-- `K997-6`
-
-Solo se registraron datos visibles: código, tallas, precio unitario, precio mayorista y promoción cuando aparece. Si un dato no era visible o no estaba confirmado, se dejó vacío o como `Pendiente`.
-
-Estas 10 referencias son **borrador de migración**, no inventario público final.
-
-## Archivo maestro
-
-El archivo de trabajo es:
+La Etapa 1 mueve el flujo de digitalización a una estructura separada:
 
 ```text
-data/import/products.master.csv
+catalog-data/
+|-- csv/
+|   `-- products.master.csv
+|-- images/
+|   |-- pending/
+|   `-- processed/
+|-- reports/
+|   |-- migration-summary.md
+|   |-- missing-data.md
+|   |-- duplicate-skus.md
+|   `-- migration-progress.md
+`-- exports/
+    `-- products.generated.json
 ```
 
-Este CSV es la fuente sostenible para cargar productos reales. Sus columnas son:
+`data/products.json` sigue siendo el catálogo público vigente y no se modifica en esta etapa.
 
-```text
-sku,codigo_interno,nombre,marca,modelo,categoria,subcategoria,genero,color_principal,colores,tallas,precio_normal,precio_mayorista,precio_promocion,tipo_promocion,estado,nuevo,destacado,descripcion_corta,descripcion_larga,imagen_principal,galeria,etiquetas,origen
-```
+## Digitalización por lotes
 
-## Cómo llenar el CSV
+Cada bloque de trabajo representa un rango de páginas del Catálogo Maestro Canva:
 
-- Usa un SKU único por fila.
-- Separa tallas con coma: `"36, 37, 38, 39"`.
-- Separa colores con coma: `"Negro, Blanco"`.
-- Separa galería con coma: `"assets/products/foto-1.webp, assets/products/foto-2.webp"`.
-- Usa booleanos en `nuevo` y `destacado` como `sí/no`, `true/false` o `1/0`.
-- Conserva precios en formato comercial: `C$ 1200`, `C$ 1100`, `2 x C$ 1200` o `Consultar`.
-- Si un dato no está confirmado, usa `Pendiente` o deja el campo vacío.
+- Lote 01: Páginas 1-5.
+- Lote 02: Páginas 6-10.
+- Lote 03: Páginas 11-15.
 
-## Generar borrador
+Los lotes se registran en el CSV con `batch_id`, `batch_name`, `page_range`, `page_start` y `page_end`.
 
-Desde la raíz del repositorio:
+## Estados de migración
+
+La columna `migration_status` acepta únicamente:
+
+- `PENDIENTE`
+- `EN_REVISION`
+- `COMPLETO`
+- `PUBLICADO`
+
+## Estados de imagen
+
+La columna `image_status` acepta únicamente:
+
+- `NO_CARGADA`
+- `PENDIENTE`
+- `OPTIMIZADA`
+- `PUBLICADA`
+
+Las imágenes en revisión deben colocarse en `catalog-data/images/pending/`. Las imágenes ya preparadas para catálogo deben colocarse en `catalog-data/images/processed/` antes de moverlas a `assets/products/` cuando sean publicables.
+
+## Puntaje de calidad
+
+El importador calcula `quality_score` de 0 a 100 usando ocho criterios:
+
+- Marca.
+- Modelo.
+- Categoría.
+- Descripción.
+- Precio.
+- Imagen.
+- Color.
+- Tallas.
+
+Cada criterio completo aporta una parte del puntaje. Un producto publicable debe llegar a 100 y no tener advertencias críticas.
+
+## Comandos
 
 ```bash
 npm run import:products
 ```
 
-Este comando lee `data/import/products.master.csv` y genera:
-
-```text
-data/import/products.generated.json
-reports/import-report.json
-reports/import-report.md
-```
-
-No modifica `data/products.json`.
-
-## Validar sin alterar productos
-
-Para revisar el CSV y generar reportes sin sobrescribir `data/products.json`:
+Genera `catalog-data/exports/products.generated.json`, actualiza los reportes en `catalog-data/reports/` y actualiza `docs/migration-dashboard.md`.
 
 ```bash
 npm run validate:products
 ```
 
-## Publicar en el catálogo público
-
-Para publicar el borrador en el catálogo visible:
+Valida el CSV maestro y regenera reportes sin crear exportación.
 
 ```bash
 npm run publish:products
 ```
 
-Este comando solo sobrescribe `data/products.json` si no existen errores ni advertencias críticas. La publicación se bloquea cuando faltan categoría, marca, color principal o imagen real.
+Conservado por compatibilidad, pero bloqueado en Etapa 1. No modifica `data/products.json`.
 
-## Revisar reportes
+## Reportes
 
-Después de ejecutar importación o validación, revisa:
+- `catalog-data/reports/migration-summary.md`: resumen general, lotes y hallazgos.
+- `catalog-data/reports/missing-data.md`: datos faltantes por fila y SKU.
+- `catalog-data/reports/duplicate-skus.md`: SKU repetidos.
+- `catalog-data/reports/migration-progress.md`: total, completos, pendientes, publicados y porcentaje de avance.
+- `docs/migration-dashboard.md`: tablero operativo para revisión comercial.
 
-- `reports/import-report.md`: reporte legible para revisión comercial.
-- `reports/import-report.json`: reporte estructurado para automatización futura.
+## Reglas de esta etapa
 
-El reporte indica:
-
-- SKU duplicados.
-- Productos sin SKU.
-- Productos sin categoría.
-- Productos sin tallas.
-- Productos sin precio.
-- Productos sin imagen.
-- Imágenes referenciadas que no existen en `assets/products/`.
-- Productos con estado vacío.
-- Productos con descripción vacía.
-
-Las advertencias no detienen el proceso. Sirven para corregir la base antes de publicar productos reales.
-
-## Subir imágenes reales
-
-1. Optimiza cada imagen antes de subirla.
-2. Usa nombres en minúsculas, sin espacios y con guiones.
-3. Guarda los archivos en `assets/products/`.
-4. Completa `imagen_principal` con la ruta principal.
-5. Completa `galeria` con rutas separadas por coma.
-
-Ejemplo:
-
-```csv
-assets/products/t22-1-principal.webp,"assets/products/t22-1-principal.webp, assets/products/t22-1-lateral.webp"
-```
-
-## Corregir errores
-
-1. Abre `reports/import-report.md`.
-2. Ubica fila y SKU.
-3. Corrige el dato en `data/import/products.master.csv`.
-4. Ejecuta `npm run validate:products`.
-5. Cuando el reporte esté limpio o aceptado, ejecuta `npm run import:products`.
-6. Publica con `npm run publish:products` únicamente cuando los productos estén listos para clientes.
-
-## Publicar en GitHub Pages
-
-1. Ejecuta `npm run import:products`.
-2. Revisa `data/import/products.generated.json` y los reportes.
-3. Ejecuta `npm run publish:products` solo si no hay advertencias críticas.
-4. Verifica que `data/products.json` esté actualizado con productos publicables.
-5. Revisa el catálogo localmente.
-6. Haz commit de CSV, borrador, JSON público si cambió, reportes, imágenes y documentación.
-7. Abre un Pull Request hacia `main`.
-8. Al hacer merge, GitHub Pages publica desde el flujo existente de GitHub Actions.
-
-## Reglas de esta fase
-
-- No editar `data/products.json` manualmente como fuente principal.
-- No reemplazar `data/products.json` con referencias incompletas en estado `Pendiente`.
-- No inventar datos no visibles del catálogo maestro.
-- No crear integración directa con Canva API.
-- No implementar login, carrito, checkout, ERP, inventario, base de datos externa ni panel administrativo.
-- Mantener intactos el logo oficial STYLUS, WhatsApp `50589468126`, GitHub Pages, PWA, SEO, accesibilidad y estructura modular.
+- No editar `data/products.json` como resultado de la migración.
+- No publicar productos incompletos o con estado `Pendiente`.
+- No inventar datos no confirmados del Catálogo Maestro.
+- No implementar carrito, ERP, inventario, API, login, checkout, base de datos externa ni panel administrativo.
+- Mantener intactos el logo oficial STYLUS, WhatsApp `50589468126`, GitHub Pages, PWA, SEO y accesibilidad.
