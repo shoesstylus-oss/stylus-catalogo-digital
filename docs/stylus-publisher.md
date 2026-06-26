@@ -64,6 +64,20 @@ El modo publish:
 
 Si no existe al menos 1 producto publicable o hay campos faltantes, el comando falla y no modifica el catalogo publico.
 
+## Prueba versionada
+
+Ejecuta:
+
+```bash
+npm run test:publisher:sample
+```
+
+La prueba `integrations/stylus/verify-publisher-sample.mjs` usa la muestra Kordata controlada y la plantilla ficticia de enriquecimiento. Verifica que el preview genere 1 producto sin modificar `data/products.json`, que publish genere 1 producto publico y cree backup, que los archivos operativos se restauren al finalizar y que el catalogo publico conserve el mismo hash despues de restaurar.
+
+Tambien valida el bloqueo de seguridad: cuando no hay productos publicables, `publish:stylus` falla y no modifica `data/products.json`.
+
+Las muestras de esta prueba son ficticias/controladas y no contienen inventario real ni costos reales.
+
 ## Restaurar backup
 
 Si una publicacion debe revertirse, restaura el backup:
@@ -73,6 +87,8 @@ copy data\products.backup.json data\products.json
 ```
 
 En Git, tambien puedes revertir el commit de publicacion si el cambio ya fue versionado.
+
+`data/products.backup.json` es un artefacto operativo de una publicacion. No debe versionarse como resultado real salvo una publicacion controlada y revisada explicitamente.
 
 ## Evitar productos incompletos
 

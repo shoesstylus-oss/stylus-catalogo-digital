@@ -12,6 +12,7 @@
     "enrich:products": "node integrations/stylus/enrich-products.mjs",
     "test:enrichment:sample": "node integrations/stylus/verify-enrichment-sample.mjs",
     "publish:preview": "node integrations/stylus/publish-products.mjs --preview",
-    "publish:stylus": "node integrations/stylus/publish-products.mjs --publish"
+    "publish:stylus": "node integrations/stylus/publish-products.mjs --publish",
+    "test:publisher:sample": "node integrations/stylus/verify-publisher-sample.mjs"
   }
 }
