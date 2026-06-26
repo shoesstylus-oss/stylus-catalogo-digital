@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="Catalogo digital de Tiendas STYLUS para calzado y ropa deportiva al por mayor."
+    >
+    <title>STYLUS Catalogo Digital</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="stylesheet" href="src/styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="topbar" aria-label="Navegacion principal">
+        <a class="brand" href="#" aria-label="Tiendas STYLUS">
+          <span class="brand-mark">S</span>
+          <span>
+            <strong>Tiendas STYLUS</strong>
+            <small>Tu proveedor mayorista de confianza</small>
+          </span>
+        </a>
+        <a class="topbar-action" href="#catalogo">Ver catalogo</a>
+      </nav>
+
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Catalogo digital mayorista</p>
+          <h1>Calzado y ropa deportiva listos para vender.</h1>
+          <p>
+            Explora productos STYLUS, filtra por categoria y envia tu pedido por WhatsApp en segundos.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#catalogo">Comprar ahora</a>
+            <a
+              class="button button-secondary"
+              href="https://wa.me/50588888888?text=Hola%20STYLUS%2C%20quiero%20informacion%20sobre%20el%20catalogo%20mayorista."
+              target="_blank"
+              rel="noreferrer"
+            >
+              WhatsApp
+            </a>
+          </div>
+        </div>
+        <div class="hero-panel" aria-label="Resumen del catalogo">
+          <div>
+            <span>+24</span>
+            <small>estilos base</small>
+          </div>
+          <div>
+            <span>3</span>
+            <small>categorias</small>
+          </div>
+          <div>
+            <span>24h</span>
+            <small>respuesta comercial</small>
+          </div>
+        </div>
+      </section>
+    </header>
+
+    <main>
+      <section class="catalog-section" id="catalogo" aria-labelledby="catalog-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Productos destacados</p>
+            <h2 id="catalog-title">Catalogo STYLUS</h2>
+          </div>
+          <p id="product-count" class="product-count" aria-live="polite"></p>
+        </div>
+
+        <form class="controls" role="search">
+          <label class="search-field" for="search">
+            <span>Buscar</span>
+            <input
+              id="search"
+              type="search"
+              name="search"
+              placeholder="Nombre, categoria o talla"
+              autocomplete="off"
+            >
+          </label>
+          <div class="filter-group" aria-label="Filtrar por categoria" id="category-filters"></div>
+        </form>
+
+        <div class="product-grid" id="product-grid"></div>
+        <p class="empty-state" id="empty-state" hidden>
+          No encontramos productos con esa busqueda. Prueba otra categoria o escribe menos detalles.
+        </p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Tiendas STYLUS - Catalogo digital mayorista.</p>
+      <a
+        href="https://wa.me/50588888888?text=Hola%20STYLUS%2C%20quiero%20hacer%20un%20pedido%20mayorista."
+        target="_blank"
+        rel="noreferrer"
+      >
+        Pedir por WhatsApp
+      </a>
+    </footer>
+
+    <script type="module" src="src/app.js"></script>
+  </body>
+</html>
