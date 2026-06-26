@@ -31,6 +31,14 @@ Uso recomendado:
 - `image_status`: estado operativo como `PENDIENTE`, `ASIGNADA`, `REVISAR`, `APROBADA`.
 - `notas`: observaciones internas.
 
+Estados recomendados para `image_status`:
+
+- `PENDIENTE`: falta asociar o revisar imagen.
+- `ASIGNADA`: ya existe una imagen candidata.
+- `REVISAR`: requiere validacion visual o comercial.
+- `APROBADA`: imagen lista para catalogo.
+- `RECHAZADA`: imagen descartada y no debe usarse.
+
 ## Prioridad de imagenes
 
 El motor de enriquecimiento resuelve la imagen principal en este orden:
@@ -69,6 +77,25 @@ Luego referencia la ruta en `local_path`. No uses archivos temporales, rutas loc
 
 Si Kordata ya contiene una URL publica o apta para catalogo, registrala en `image_url` y marca `image_source` como `kordata` o `azure_blob`. No guardes credenciales, SAS tokens privados ni URLs temporales sensibles.
 
+Las URLs de Kordata/Azure son una fuente inicial para acelerar la asociacion. Para productos estrategicos, campañas y piezas destacadas, STYLUS debe preferir imagenes propias aprobadas en `assets/products/stylus/` mediante `local_path`.
+
+## Prueba versionada
+
+Ejecuta:
+
+```bash
+npm run test:images:sample
+```
+
+La prueba `integrations/stylus/verify-image-manager-sample.mjs` usa datos ficticios/controlados y valida la prioridad:
+
+1. `imagen_principal` en enrichment gana sobre `image-map.csv`.
+2. Si enrichment no trae imagen, usa `local_path`.
+3. Si no hay `local_path`, usa `image_url` de Kordata/Azure.
+4. Si no hay imagen, el producto queda `publicable = false` y aparece en `images-missing.md`.
+
+La prueba restaura outputs y reportes al finalizar.
+
 ## Seguridad
 
 Este modulo no modifica:
@@ -81,3 +108,5 @@ Este modulo no modifica:
 - SEO
 
 Tampoco publica automaticamente. La publicacion sigue controlada por el publicador seguro.
+
+No descarga imagenes, no usa API, no versiona imagenes reales sensibles y no modifica `data/products.json`.

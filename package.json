@@ -13,6 +13,7 @@
     "test:enrichment:sample": "node integrations/stylus/verify-enrichment-sample.mjs",
     "publish:preview": "node integrations/stylus/publish-products.mjs --preview",
     "publish:stylus": "node integrations/stylus/publish-products.mjs --publish",
-    "test:publisher:sample": "node integrations/stylus/verify-publisher-sample.mjs"
+    "test:publisher:sample": "node integrations/stylus/verify-publisher-sample.mjs",
+    "test:images:sample": "node integrations/stylus/verify-image-manager-sample.mjs"
   }
 }
