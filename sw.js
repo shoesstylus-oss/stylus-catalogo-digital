@@ -1,8 +1,10 @@
-const CACHE_NAME = "stylus-platform-v3";
+const CACHE_NAME = "stylus-platform-v5";
 const APP_SHELL = [
   "./",
   "./index.html",
   "./pages/product.html",
+  "./robots.txt",
+  "./sitemap.xml",
   "./src/styles.css",
   "./src/pages/catalogPage.js",
   "./src/pages/productPage.js",

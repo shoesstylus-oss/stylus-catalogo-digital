@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://shoesstylus-oss.github.io/stylus-catalogo-digital/sitemap.xml

@@ -46,6 +46,7 @@ Cada producto en `data/products.json` debe incluir:
 - `categoría`: familia del producto, por ejemplo Calzado, Ropa o Accesorios.
 - `género`: Hombre, Mujer, Unisex, Niño, Niña u otro valor comercial.
 - `color`: color principal.
+- `colores`: lista de colores disponibles o visibles para el producto.
 - `tallas`: lista de tallas disponibles.
 - `precio`: precio público o texto como `Consultar`.
 - `precio_mayorista`: precio mayorista o texto comercial.
@@ -67,6 +68,7 @@ Cada producto en `data/products.json` debe incluir:
   "categoría": "Calzado",
   "género": "Hombre",
   "color": "Negro",
+  "colores": ["Negro", "Blanco"],
   "tallas": ["39", "40", "41", "42", "43"],
   "precio": "Consultar",
   "precio_mayorista": "Precio mayorista por WhatsApp",
@@ -92,6 +94,7 @@ Antes de publicar productos reales, confirma:
 - Categoría consistente con los filtros.
 - Género consistente con los filtros.
 - Color principal correcto.
+- Colores adicionales revisados.
 - Tallas como arreglo JSON.
 - Precio revisado.
 - Precio mayorista revisado.

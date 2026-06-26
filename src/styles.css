@@ -12,6 +12,8 @@
   --coral: #d84a3a;
   --gold: #bc7a25;
   --shadow: 0 18px 45px rgba(19, 22, 28, 0.12);
+  --shadow-hover: 0 20px 55px rgba(19, 22, 28, 0.18);
+  --ease: 180ms ease;
 }
 
 * {
@@ -36,6 +38,13 @@ img {
 
 a {
   color: inherit;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid rgba(216, 74, 58, 0.55);
+  outline-offset: 3px;
 }
 
 mark {
@@ -127,7 +136,19 @@ mark {
   border-radius: 8px;
   font-weight: 850;
   text-decoration: none;
+  transition:
+    background var(--ease),
+    border-color var(--ease),
+    color var(--ease),
+    transform var(--ease),
+    box-shadow var(--ease);
   white-space: nowrap;
+}
+
+.button:hover,
+.nav-link:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(19, 22, 28, 0.12);
 }
 
 .nav-link {
@@ -315,6 +336,11 @@ mark {
   color: var(--muted);
   cursor: pointer;
   font-weight: 750;
+  transition: color var(--ease);
+}
+
+.filter-option:hover {
+  color: var(--charcoal);
 }
 
 .filter-option input {
@@ -367,6 +393,13 @@ mark {
   font-size: 13px;
   font-weight: 850;
   padding: 0 12px;
+  transition: background var(--ease), border-color var(--ease), transform var(--ease);
+}
+
+.active-filter:hover {
+  border-color: var(--teal);
+  background: #eef7f5;
+  transform: translateY(-1px);
 }
 
 .product-grid {
@@ -383,6 +416,13 @@ mark {
   border-radius: 8px;
   background: var(--paper);
   box-shadow: 0 1px 0 rgba(19, 22, 28, 0.04);
+  transition: border-color var(--ease), box-shadow var(--ease), transform var(--ease);
+}
+
+.product-card:hover {
+  border-color: rgba(23, 107, 99, 0.35);
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-3px);
 }
 
 .product-media {
@@ -393,11 +433,28 @@ mark {
   text-decoration: none;
 }
 
+.product-media::before,
+.gallery-frame::before,
+.skeleton-card::before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background: linear-gradient(110deg, #eef2f5 8%, #f8fafc 18%, #eef2f5 33%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.25s linear infinite;
+}
+
 .product-media img {
+  position: relative;
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: opacity var(--ease), transform 240ms ease;
+}
+
+.product-card:hover .product-media img {
+  transform: scale(1.025);
 }
 
 .tag-row {
@@ -431,8 +488,8 @@ mark {
 
 .product-body {
   display: grid;
-  gap: 13px;
-  padding: 18px;
+  gap: 14px;
+  padding: 20px;
 }
 
 .product-kicker,
@@ -458,7 +515,7 @@ mark {
 
 .product-body h3 {
   margin: 0;
-  font-size: 21px;
+  font-size: 22px;
   line-height: 1.15;
   letter-spacing: 0;
 }
@@ -536,6 +593,7 @@ mark {
 }
 
 .gallery-frame {
+  position: relative;
   overflow: hidden;
   margin: 0;
   border: 1px solid var(--line);
@@ -544,6 +602,7 @@ mark {
 }
 
 .gallery-frame img {
+  position: relative;
   display: block;
   width: 100%;
   aspect-ratio: 1.32;
@@ -568,7 +627,7 @@ mark {
 .detail-description {
   margin: 0;
   color: var(--muted);
-  font-size: 17px;
+  font-size: 18px;
 }
 
 .detail-specs {
@@ -638,6 +697,34 @@ mark {
   color: var(--teal);
   font-weight: 900;
   text-decoration: none;
+}
+
+.skeleton-card {
+  position: relative;
+  min-height: 420px;
+  border-color: transparent;
+  background: var(--soft);
+}
+
+.skeleton-card::before {
+  border-radius: 8px;
+}
+
+@keyframes skeleton-loading {
+  to {
+    background-position-x: -200%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 @media (max-width: 980px) {

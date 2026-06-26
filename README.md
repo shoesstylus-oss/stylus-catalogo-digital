@@ -32,6 +32,12 @@ Construir una plataforma comercial moderna para Tiendas STYLUS. La Fase 3 deja d
 - Agrega preparación PWA con `manifest.json` y `sw.js`.
 - Centraliza cadenas de interfaz en `data/i18n.es.json`.
 
+### Fase 5
+
+- Organiza el catálogo comercial en Calzado Deportivo, Calzado Casual, Ropa Deportiva y Accesorios.
+- Prepara marcas comerciales para filtros: Nike, Adidas, New Balance, Puma, Reebok, Under Armour, STYLUS y Otras.
+- Mejora presentación visual, SEO, accesibilidad y rendimiento sin agregar funciones de carrito, login ni inventario.
+
 ## Estructura
 
 ```text
@@ -43,6 +49,7 @@ stylus-catalogo-digital/
 |   |-- i18n.es.json
 |   `-- products.json
 |-- docs/
+|   |-- arquitectura.md
 |   |-- fase-3.md
 |   `-- github-pages.md
 |-- pages/

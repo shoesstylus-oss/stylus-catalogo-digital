@@ -5,14 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta
       name="description"
-      content="Plataforma comercial STYLUS para consultar productos mayoristas, filtrar colecciones y comprar por WhatsApp."
+      content="Catálogo comercial premium de Tiendas STYLUS con calzado deportivo, calzado casual, ropa deportiva y accesorios para pedidos mayoristas por WhatsApp."
     >
+    <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#14161b">
     <link rel="canonical" href="./">
-    <title>STYLUS Plataforma Comercial</title>
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="STYLUS Catálogo Comercial Premium">
+    <meta property="og:description" content="Explora productos mayoristas STYLUS por marca, categoría, tallas, color y disponibilidad.">
+    <meta property="og:image" content="assets/logo/stylus-logo-horizontal.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="STYLUS Catálogo Comercial Premium">
+    <meta name="twitter:description" content="Catálogo comercial STYLUS para compras mayoristas por WhatsApp.">
+    <title>STYLUS Catálogo Comercial Premium</title>
     <link rel="manifest" href="manifest.json">
     <link rel="icon" href="assets/logo/favicon.png" type="image/png">
     <link rel="apple-touch-icon" href="assets/logo/favicon.png">
+    <link rel="preload" href="assets/logo/stylus-logo-horizontal.png" as="image" fetchpriority="high">
+    <link rel="prefetch" href="data/products.json" as="fetch" crossorigin>
+    <link rel="prefetch" href="pages/product.html">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -20,6 +31,25 @@
       rel="stylesheet"
     >
     <link rel="stylesheet" href="src/styles.css">
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "STYLUS Catálogo Comercial",
+        "description": "Catálogo comercial premium de Tiendas STYLUS para pedidos mayoristas.",
+        "url": "./",
+        "publisher": {
+          "@type": "Organization",
+          "name": "Tiendas STYLUS",
+          "logo": "assets/logo/stylus-logo-horizontal.png"
+        },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "./?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
   </head>
   <body data-page="catalog">
     <header class="app-header">
@@ -84,7 +114,11 @@
           <p id="result-count" class="result-count" aria-live="polite"></p>
         </div>
         <div id="active-filters" class="active-filters" aria-live="polite"></div>
-        <div id="product-grid" class="product-grid"></div>
+        <div id="product-grid" class="product-grid" aria-live="polite">
+          <article class="product-card skeleton-card" aria-hidden="true"></article>
+          <article class="product-card skeleton-card" aria-hidden="true"></article>
+          <article class="product-card skeleton-card" aria-hidden="true"></article>
+        </div>
         <p id="empty-state" class="empty-state" hidden data-i18n="catalog.empty">
           No encontramos productos con esos criterios.
         </p>

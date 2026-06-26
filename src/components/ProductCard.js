@@ -5,6 +5,7 @@ import { t } from "../utils/i18n.js";
 import { productWhatsappUrl } from "../utils/whatsapp.js";
 
 export function productCard(product, query = "", base = ".") {
+  const colors = product.colores?.length ? product.colores : [product.color];
   const badges = [
     product.nuevo ? `<span class="tag tag-new">${t("labels.new")}</span>` : "",
     product.destacado ? `<span class="tag tag-featured">${t("labels.featured")}</span>` : ""
@@ -13,7 +14,7 @@ export function productCard(product, query = "", base = ".") {
   return `
     <article class="product-card">
       <a class="product-media" href="${productUrl(product.id, base)}" aria-label="${escapeHtml(product.nombre)}">
-        <img src="${imagePath(product.imagen, base)}" alt="${escapeHtml(product.nombre)}" loading="lazy" width="900" height="640">
+        <img src="${imagePath(product.imagen, base)}" alt="${escapeHtml(product.nombre)}" loading="lazy" decoding="async" width="900" height="640">
         <span class="tag-row">${badges}</span>
       </a>
       <div class="product-body">
@@ -26,7 +27,8 @@ export function productCard(product, query = "", base = ".") {
         <div class="product-specs">
           <span>${escapeHtml(product["categoría"])}</span>
           <span>${escapeHtml(product["género"])}</span>
-          <span>${escapeHtml(product.color)}</span>
+          <span>${colors.map(escapeHtml).join(" / ")}</span>
+          <span>${escapeHtml(product.estado)}</span>
         </div>
         <div class="commercial-row">
           <strong>${escapeHtml(product.precio)}</strong>
