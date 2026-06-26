@@ -28,6 +28,10 @@ const filesToRestore = [
   "catalog-data/reports/enrichment-missing-data.md",
   "catalog-data/reports/enrichment-ready-to-publish.md",
   "catalog-data/reports/enrichment-pending.md",
+  "catalog-data/reports/images-summary.md",
+  "catalog-data/reports/images-missing.md",
+  "catalog-data/reports/images-from-kordata.md",
+  "catalog-data/reports/images-manual.md",
   "catalog-data/reports/publish-preview.md",
   "catalog-data/reports/publish-result.md"
 ];

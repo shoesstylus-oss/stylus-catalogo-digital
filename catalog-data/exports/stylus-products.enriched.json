@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-26T15:56:21.311Z",
+  "generatedAt": "2026-06-26T17:58:33.610Z",
   "source": {
     "kordata": "catalog-data/exports/kordata-products.generated.json",
     "enrichment": "catalog-data/enrichment/products.enrichment.csv"
@@ -9,6 +9,7 @@
   "totals": {
     "kordataProducts": 0,
     "enrichmentRows": 0,
+    "imageRows": 0,
     "productsWithEnrichment": 0,
     "productsWithoutEnrichment": 0,
     "publicableProducts": 0,
