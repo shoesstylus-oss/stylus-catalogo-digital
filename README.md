@@ -1,10 +1,10 @@
-# STYLUS Catálogo Digital
+# STYLUS Plataforma Comercial
 
-Repositorio oficial del proyecto **Catálogo Digital STYLUS**, pensado para presentar productos de Tiendas STYLUS de forma moderna, rápida, editable y compartible con clientes.
+Repositorio oficial de la **Plataforma Comercial STYLUS**, una base web estática, profesional y escalable para presentar productos mayoristas, filtrar colecciones y conectar pedidos por WhatsApp.
 
 ## Objetivo
 
-Crear un catálogo digital visualmente atractivo, optimizado para móvil, que permita mostrar productos, categorías, imágenes, precios, disponibilidad y contacto directo por WhatsApp.
+Construir una plataforma comercial moderna para Tiendas STYLUS. La Fase 3 deja de tratar el proyecto como un catálogo aislado y lo organiza como una aplicación modular preparada para futuras funciones comerciales.
 
 ## Estado actual
 
@@ -17,68 +17,77 @@ Crear un catálogo digital visualmente atractivo, optimizado para móvil, que pe
 
 ### Fase 2
 
-- Productos organizados en `src/products.js` con SKU, disponibilidad e imagen.
 - Soporte para imágenes cargadas desde `assets/products/`.
-- Logo y marca cargados desde `assets/logo/`.
-- Fallback visual cuando una imagen de producto no existe o no carga.
-- Mejora visual de identidad STYLUS.
-- Workflow listo para publicar con GitHub Pages.
+- Logo oficial cargado desde `assets/logo/`.
+- Preparación para publicar con GitHub Pages.
+
+### Fase 3
+
+- Reestructura modular en `src/components/`, `src/pages/`, `src/utils/`, `data/`, `pages/` y `assets/`.
+- Migra productos a `data/products.json`.
+- Agrega filtros profesionales por marca, categoría, tallas, color, género, novedades y destacados.
+- Agrega búsqueda instantánea con coincidencias resaltadas.
+- Agrega tarjetas comerciales Premium con etiquetas, SKU, precio, WhatsApp y Ver más.
+- Agrega página individual de producto con galería, descripción, tallas, SKU, compra por WhatsApp y relacionados.
+- Agrega preparación PWA con `manifest.json` y `sw.js`.
+- Centraliza cadenas de interfaz en `data/i18n.es.json`.
 
 ## Estructura
 
 ```text
 stylus-catalogo-digital/
-|-- .github/
-|   `-- workflows/
-|       `-- pages.yml
 |-- assets/
 |   |-- logo/
-|   |   |-- favicon.png
-|   |   |-- stylus-icon.png
-|   |   |-- stylus-logo-horizontal.png
-|   |   `-- stylus-logo.png
 |   `-- products/
+|-- data/
+|   |-- i18n.es.json
+|   `-- products.json
 |-- docs/
+|   |-- fase-3.md
 |   `-- github-pages.md
+|-- pages/
+|   `-- product.html
 |-- src/
-|   |-- app.js
-|   |-- products.js
+|   |-- components/
+|   |-- pages/
+|   |-- utils/
 |   `-- styles.css
-|-- .nojekyll
+|-- manifest.json
+|-- sw.js
 |-- index.html
 `-- README.md
 ```
 
 ## Actualizar productos
 
-Edita `src/products.js`. Cada producto puede definir:
+Edita `data/products.json`. Cada producto debe incluir:
 
+- `id`
 - `sku`
-- `name`
-- `category`
-- `price`
-- `sizes`
-- `availability`
-- `image`
-- `description`
+- `nombre`
+- `marca`
+- `categoría`
+- `género`
+- `color`
+- `tallas`
+- `precio`
+- `precio_mayorista`
+- `estado`
+- `nuevo`
+- `destacado`
+- `imagen`
+- `descripción`
 
 Las imágenes deben vivir en `assets/products/` y se referencian así:
 
-```js
-image: "assets/products/nombre-del-producto.webp"
+```json
+"imagen": "assets/products/nombre-del-producto.webp"
 ```
 
 ## Logo oficial
 
-El logotipo oficial de STYLUS vive en `assets/logo/`. La interfaz usa estos archivos:
-
-- `stylus-logo.png`: copia fuente del logotipo oficial.
-- `stylus-logo-horizontal.png`: versión horizontal recortada desde el archivo oficial para el encabezado.
-- `stylus-icon.png`: ícono recortado desde el monograma oficial.
-- `favicon.png`: versión del ícono para navegador.
-
-Para cambiar el logo en el futuro basta reemplazar esos archivos manteniendo los mismos nombres. No se deben usar logos temporales, recreados, redibujados ni generados como placeholder.
+El logotipo oficial de STYLUS vive en `assets/logo/`. Para cambiar el logo en el futuro basta reemplazar los archivos manteniendo los mismos nombres. No se deben usar logos temporales, recreados, redibujados ni generados como placeholder.
 
 ## Publicación
 
-Ver [docs/github-pages.md](docs/github-pages.md).
+Ver [docs/github-pages.md](docs/github-pages.md) y [docs/fase-3.md](docs/fase-3.md).

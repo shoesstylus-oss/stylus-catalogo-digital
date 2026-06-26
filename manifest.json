@@ -1,0 +1,24 @@
+{
+  "name": "STYLUS Plataforma Comercial",
+  "short_name": "STYLUS",
+  "description": "Plataforma comercial mayorista para Tiendas STYLUS.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#14161b",
+  "icons": [
+    {
+      "src": "assets/logo/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/logo/stylus-icon.png",
+      "sizes": "242x242",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

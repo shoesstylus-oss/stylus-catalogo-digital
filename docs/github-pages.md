@@ -1,6 +1,6 @@
 # Publicación con GitHub Pages
 
-Este catálogo está preparado como sitio estático: `index.html`, `src/`, `assets/` y archivos de configuración.
+Este catálogo está preparado como sitio estático: `index.html`, `pages/`, `src/`, `data/`, `assets/` y archivos de configuración.
 
 ## Activar Pages
 
@@ -12,13 +12,15 @@ Este catálogo está preparado como sitio estático: `index.html`, `src/`, `asse
 
 1. Sube fotos optimizadas a `assets/products/`.
 2. Usa nombres simples en minúscula, por ejemplo `tenis-runner-negro.webp`.
-3. En `src/products.js`, actualiza la propiedad `image` del producto:
+3. En `data/products.json`, actualiza la propiedad `imagen` del producto:
 
 ```js
-image: "assets/products/tenis-runner-negro.webp"
+"imagen": "assets/products/tenis-runner-negro.webp"
 ```
 
-Si una imagen no carga, el catálogo usa un fallback visual generado por JavaScript para que la tarjeta no quede rota.
+Las rutas en `data/products.json` deben ser relativas a la raíz del sitio, por ejemplo `assets/products/tenis-runner-negro.webp`.
+
+Si una imagen no carga, revisa que el nombre del archivo coincida exactamente con el valor registrado en `data/products.json`.
 
 ## Actualizar logo oficial
 
@@ -36,3 +38,7 @@ Para cambiar el logo en el futuro basta reemplazar esos archivos manteniendo los
 - Productos: `1200x900`, formato `.webp` o `.jpg`, menos de 300 KB por imagen.
 - Logo horizontal: PNG derivado del archivo oficial.
 - Ícono/favicon: PNG cuadrado derivado del archivo oficial.
+
+## PWA
+
+La Fase 3 agrega `manifest.json` y `sw.js`. Ambos están pensados para funcionar desde la raíz del sitio publicado en GitHub Pages. Si cambias rutas base o subcarpetas, revisa `start_url`, `scope` y la lista `APP_SHELL` de `sw.js`.
