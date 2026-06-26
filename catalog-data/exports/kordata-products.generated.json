@@ -1,0 +1,19 @@
+{
+  "generatedAt": null,
+  "source": "Exportacion Excel de inventario Kordata",
+  "output": "catalog-data/exports/kordata-products.generated.json",
+  "publishOutput": null,
+  "publicCatalogTouched": false,
+  "rowsRead": 0,
+  "productsGrouped": 0,
+  "headerDetections": [],
+  "totals": {
+    "existenciaTotal": 0,
+    "disponibleTotal": 0,
+    "reservadoTotal": 0,
+    "lowStockProducts": 0,
+    "missingDataIssues": 0
+  },
+  "lowStock": [],
+  "products": []
+}
