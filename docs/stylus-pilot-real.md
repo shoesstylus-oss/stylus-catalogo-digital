@@ -32,6 +32,8 @@ El archivo generado queda en:
 
 `catalog-data/pilot/stylus-pilot-10.generated.csv`
 
+`stylus-pilot-10.generated.csv` es un archivo de trabajo generado para preparar el lote piloto. La operacion final del flujo sigue ocurriendo en `catalog-data/enrichment/products.enrichment.csv` y `catalog-data/images/image-map.csv`; el generador no los modifica automaticamente.
+
 Usa ese CSV como guia de trabajo para llenar datos comerciales en una copia controlada o en `catalog-data/enrichment/products.enrichment.csv` cuando STYLUS decida operar el piloto. No pegues costos reales en el piloto; el campo `precio_mayorista` es comercial y debe completarse manualmente solo si aplica.
 
 Campos clave a completar antes de preview:
