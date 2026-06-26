@@ -1,0 +1,154 @@
+{
+  "generatedAt": "2026-06-26T05:56:09.971Z",
+  "source": "data/import/products.master.csv",
+  "output": "data/products.json",
+  "validateOnly": false,
+  "summary": {
+    "rows": 10,
+    "products": 10,
+    "errors": 0,
+    "warnings": 20
+  },
+  "issues": [
+    {
+      "type": "missing_category",
+      "severity": "warning",
+      "row": 2,
+      "sku": "T22-1",
+      "message": "Producto sin categoría confirmada."
+    },
+    {
+      "type": "missing_image",
+      "severity": "warning",
+      "row": 2,
+      "sku": "T22-1",
+      "message": "Producto sin imagen principal; se usó placeholder técnico existente."
+    },
+    {
+      "type": "missing_category",
+      "severity": "warning",
+      "row": 3,
+      "sku": "T21-1",
+      "message": "Producto sin categoría confirmada."
+    },
+    {
+      "type": "missing_image",
+      "severity": "warning",
+      "row": 3,
+      "sku": "T21-1",
+      "message": "Producto sin imagen principal; se usó placeholder técnico existente."
+    },
+    {
+      "type": "missing_category",
+      "severity": "warning",
+      "row": 4,
+      "sku": "T655-18",
+      "message": "Producto sin categoría confirmada."
+    },
+    {
+      "type": "missing_image",
+      "severity": "warning",
+      "row": 4,
+      "sku": "T655-18",
+      "message": "Producto sin imagen principal; se usó placeholder técnico existente."
+    },
+    {
+      "type": "missing_category",
+      "severity": "warning",
+      "row": 5,
+      "sku": "K998-3",
+      "message": "Producto sin categoría confirmada."
+    },
+    {
+      "type": "missing_image",
+      "severity": "warning",
+      "row": 5,
+      "sku": "K998-3",
+      "message": "Producto sin imagen principal; se usó placeholder técnico existente."
+    },
+    {
+      "type": "missing_category",
+      "severity": "warning",
+      "row": 6,
+      "sku": "K991-2",
+      "message": "Producto sin categoría confirmada."
+    },
+    {
+      "type": "missing_image",
+      "severity": "warning",
+      "row": 6,
+      "sku": "K991-2",
+      "message": "Producto sin imagen principal; se usó placeholder técnico existente."
+    },
+    {
+      "type": "missing_category",
+      "severity": "warning",
+      "row": 7,
+      "sku": "K998-2",
+      "message": "Producto sin categoría confirmada."
+    },
+    {
+      "type": "missing_image",
+      "severity": "warning",
+      "row": 7,
+      "sku": "K998-2",
+      "message": "Producto sin imagen principal; se usó placeholder técnico existente."
+    },
+    {
+      "type": "missing_category",
+      "severity": "warning",
+      "row": 8,
+      "sku": "K997-3",
+      "message": "Producto sin categoría confirmada."
+    },
+    {
+      "type": "missing_image",
+      "severity": "warning",
+      "row": 8,
+      "sku": "K997-3",
+      "message": "Producto sin imagen principal; se usó placeholder técnico existente."
+    },
+    {
+      "type": "missing_category",
+      "severity": "warning",
+      "row": 9,
+      "sku": "K997-1",
+      "message": "Producto sin categoría confirmada."
+    },
+    {
+      "type": "missing_image",
+      "severity": "warning",
+      "row": 9,
+      "sku": "K997-1",
+      "message": "Producto sin imagen principal; se usó placeholder técnico existente."
+    },
+    {
+      "type": "missing_category",
+      "severity": "warning",
+      "row": 10,
+      "sku": "K998-1",
+      "message": "Producto sin categoría confirmada."
+    },
+    {
+      "type": "missing_image",
+      "severity": "warning",
+      "row": 10,
+      "sku": "K998-1",
+      "message": "Producto sin imagen principal; se usó placeholder técnico existente."
+    },
+    {
+      "type": "missing_category",
+      "severity": "warning",
+      "row": 11,
+      "sku": "K997-6",
+      "message": "Producto sin categoría confirmada."
+    },
+    {
+      "type": "missing_image",
+      "severity": "warning",
+      "row": 11,
+      "sku": "K997-6",
+      "message": "Producto sin imagen principal; se usó placeholder técnico existente."
+    }
+  ]
+}

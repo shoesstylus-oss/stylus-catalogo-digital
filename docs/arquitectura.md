@@ -10,6 +10,7 @@ El proyecto es una aplicación web estática compatible con GitHub Pages. La exp
 - `pages/product.html`: ficha individual de producto con galería, descripción, tallas, disponibilidad, WhatsApp y productos relacionados.
 
 La información comercial se carga desde archivos JSON locales y las imágenes viven dentro del repositorio.
+Desde la Fase 6, `data/products.json` se puede generar desde `data/import/products.master.csv` usando el importador local.
 
 ## Estructura principal
 
@@ -19,6 +20,7 @@ stylus-catalogo-digital/
 |   |-- logo/
 |   `-- products/
 |-- data/
+|   |-- import/
 |   |-- i18n.es.json
 |   |-- products.json
 |   `-- products.template.json
@@ -27,9 +29,15 @@ stylus-catalogo-digital/
 |   |-- carga-productos.md
 |   |-- fase-3.md
 |   |-- github-pages.md
+|   |-- migracion-canva.md
 |   `-- publicacion.md
 |-- pages/
 |   `-- product.html
+|-- reports/
+|   |-- import-report.json
+|   `-- import-report.md
+|-- scripts/
+|   `-- import-products.mjs
 |-- src/
 |   |-- components/
 |   |-- pages/
@@ -45,12 +53,16 @@ stylus-catalogo-digital/
 
 ## Datos
 
-`data/products.json` es la fuente principal del catálogo. Cada producto incluye:
+`data/import/products.master.csv` es la fuente maestra recomendada para cargas reales. El script `scripts/import-products.mjs` transforma el CSV en `data/products.json`.
+
+`data/products.json` es la fuente de lectura de la plataforma. Cada producto incluye:
 
 - Identificación: `id`, `sku`.
 - Información comercial: `nombre`, `marca`, `categoría`, `género`, `color`, `colores`, `tallas`.
 - Venta: `precio`, `precio_mayorista`, `estado`, `nuevo`, `destacado`.
 - Contenido: `imagen`, `galería`, `descripción`.
+
+El importador también genera reportes en `reports/` para detectar SKU duplicados, campos pendientes e imágenes faltantes antes de publicar.
 
 Las categorías comerciales actuales son:
 
