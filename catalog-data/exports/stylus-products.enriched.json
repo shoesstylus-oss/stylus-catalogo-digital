@@ -1,0 +1,28 @@
+{
+  "generatedAt": "2026-06-26T15:56:21.311Z",
+  "source": {
+    "kordata": "catalog-data/exports/kordata-products.generated.json",
+    "enrichment": "catalog-data/enrichment/products.enrichment.csv"
+  },
+  "output": "catalog-data/exports/stylus-products.enriched.json",
+  "publicCatalogTouched": false,
+  "totals": {
+    "kordataProducts": 0,
+    "enrichmentRows": 0,
+    "productsWithEnrichment": 0,
+    "productsWithoutEnrichment": 0,
+    "publicableProducts": 0,
+    "pendingProducts": 0,
+    "missingDataProducts": 0,
+    "duplicateEnrichmentKeys": 0,
+    "invalidEnrichmentStates": 0
+  },
+  "productsWithEnrichment": [],
+  "productsWithoutEnrichment": [],
+  "publicableProducts": [],
+  "pendingProducts": [],
+  "missingData": [],
+  "duplicateKeys": [],
+  "invalidStates": [],
+  "products": []
+}
