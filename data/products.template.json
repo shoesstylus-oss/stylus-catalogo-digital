@@ -1,0 +1,23 @@
+[
+  {
+    "id": "producto-ejemplo-unico",
+    "sku": "STY-CAT-000",
+    "nombre": "Nombre comercial del producto",
+    "marca": "STYLUS",
+    "categoría": "Calzado",
+    "género": "Unisex",
+    "color": "Negro",
+    "tallas": ["38", "39", "40", "41"],
+    "precio": "Consultar",
+    "precio_mayorista": "Precio mayorista por WhatsApp",
+    "estado": "Disponible",
+    "nuevo": false,
+    "destacado": false,
+    "imagen": "assets/products/producto-ejemplo-unico.webp",
+    "galería": [
+      "assets/products/producto-ejemplo-unico.webp",
+      "assets/products/producto-ejemplo-unico-lateral.webp"
+    ],
+    "descripción": "Descripción breve del producto, enfocada en venta mayorista y características principales."
+  }
+]

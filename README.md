@@ -90,4 +90,4 @@ El logotipo oficial de STYLUS vive en `assets/logo/`. Para cambiar el logo en el
 
 ## Publicación
 
-Ver [docs/github-pages.md](docs/github-pages.md) y [docs/fase-3.md](docs/fase-3.md).
+Ver [docs/publicacion.md](docs/publicacion.md), [docs/carga-productos.md](docs/carga-productos.md), [docs/github-pages.md](docs/github-pages.md) y [docs/fase-3.md](docs/fase-3.md).
