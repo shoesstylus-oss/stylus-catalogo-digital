@@ -13,7 +13,7 @@ export const products = [
     accent: "#176b63",
     image: "assets/products/tenis-deportivo-hombre.svg",
     imageLabel: "Calzado",
-    description: "Modelo deportivo para rotacion mayorista. Reemplaza la imagen SVG por fotografia real cuando este disponible."
+    description: "Modelo deportivo para rotación mayorista. Reemplaza la imagen SVG por fotografía real cuando esté disponible."
   },
   {
     id: "tenis-urbano-deportivo",
@@ -63,7 +63,7 @@ export const products = [
     name: "Mochila deportiva",
     category: "Accesorios",
     price: "Consultar precio",
-    sizes: ["Unica"],
+    sizes: ["Única"],
     availability: "Disponible para consulta",
     featured: true,
     accent: "#b7791f",

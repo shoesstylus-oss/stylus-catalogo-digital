@@ -33,7 +33,7 @@ function createFallbackImage(product) {
 }
 
 function whatsappLink(product) {
-  const text = `Hola STYLUS, quiero informacion para pedido mayorista de ${product.name} (${product.sku}) en tallas ${product.sizes.join(", ")}.`;
+  const text = `Hola STYLUS, quiero información para pedido mayorista de ${product.name} (${product.sku}) en tallas ${product.sizes.join(", ")}.`;
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
 }
 

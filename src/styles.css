@@ -76,9 +76,12 @@ a {
 }
 
 .brand-logo {
-  width: 54px;
+  width: clamp(148px, 18vw, 196px);
   height: 54px;
   flex: 0 0 auto;
+  border-radius: 4px;
+  object-fit: contain;
+  object-position: left center;
 }
 
 .brand-copy {
@@ -211,6 +214,8 @@ a {
   width: 64px;
   height: 64px;
   margin-bottom: 18px;
+  border-radius: 4px;
+  object-fit: contain;
 }
 
 .board-card span,
@@ -550,12 +555,12 @@ a {
   }
 
   .brand {
-    align-items: flex-start;
+    align-items: center;
   }
 
   .brand-logo {
-    width: 48px;
-    height: 48px;
+    width: min(156px, 46vw);
+    height: 42px;
   }
 
   .hero h1 {

@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
-  <title id="title">STYLUS mark</title>
-  <desc id="desc">Marca grafica de Tiendas STYLUS.</desc>
-  <rect width="128" height="128" rx="24" fill="#14161b"/>
-  <path d="M26 78c18-13 35-18 54-15 13 2 23-1 34-10" fill="none" stroke="#d84a3a" stroke-width="11" stroke-linecap="round"/>
-  <path d="M26 94h76c10 0 17-8 17-18H54c-14 0-23 6-28 18Z" fill="#ffffff"/>
-  <path d="M44 67c11-22 26-34 45-38 8 8 17 17 27 28-17 9-33 12-49 9-8-1-16-1-23 1Z" fill="#176b63"/>
-  <text x="28" y="36" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="21" font-weight="900">S</text>
-</svg>
