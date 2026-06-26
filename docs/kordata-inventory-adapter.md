@@ -16,6 +16,8 @@ Guarda uno o mas archivos `.xlsx` en:
 catalog-data/kordata/
 ```
 
+Los Excel reales exportados desde Kordata deben tratarse como informacion operativa sensible. No subas al repositorio inventario real, costos reales, disponibilidad vigente, ubicaciones internas no publicables ni datos de proveedores. Si necesitas versionar una muestra, usa solo archivos controlados, ficticios o anonimizados como `catalog-data/kordata/samples/kordata-inventory.sample.xlsx`.
+
 Tambien puedes procesar un archivo puntual con `--input`:
 
 ```bash
@@ -51,6 +53,51 @@ Puedes ajustar el umbral de stock bajo:
 npm run import:kordata -- --low-stock 5
 ```
 
+## Prueba documentada con muestra controlada
+
+El repositorio incluye una muestra representativa y ficticia en:
+
+```bash
+catalog-data/kordata/samples/kordata-inventory.sample.xlsx
+```
+
+La muestra tiene cuatro filas administrativas antes de la tabla y la fila 5 como encabezado real. Ejecuta:
+
+```bash
+npm run test:kordata:sample
+```
+
+La prueba confirma que el motor detecta correctamente:
+
+- SKU
+- NombreDelProducto
+- Modelo
+- Talla
+- Color
+- Categoria
+- Marca
+- PrecioDeVenta
+- Costo
+- Reservado
+- Disponible
+- Existencia
+- Ubicacion
+
+Tambien confirma que el agrupamiento por Modelo + Marca + Color + Categoria consolida multiples tallas, multiples filas por existencia, existencia total, disponible total y existencia por sucursal. Para la muestra `URB-100 + STYLUS + Blanco + Tenis`, el resultado esperado es:
+
+| Metrica | Valor esperado |
+| --- | ---: |
+| Tallas disponibles | 37, 38 |
+| Existencia total | 12 |
+| Disponible total | 10 |
+| Reservado total | 2 |
+| Existencia STYLUS Centro | 8 |
+| Disponible STYLUS Centro | 7 |
+| Existencia STYLUS Masaya | 4 |
+| Disponible STYLUS Masaya | 3 |
+
+La prueba tambien valida un segundo grupo `SAN-200 + STYLUS + Negro + Sandalias` con existencia total 1 y disponible total 1 para cubrir stock bajo. Ver detalles en `catalog-data/kordata/samples/kordata-inventory.sample.expected.md`.
+
 ## Validar antes de publicar
 
 1. Revisa que `kordata-products.generated.json` agrupe correctamente por modelo, marca, color y categoria.
@@ -60,3 +107,5 @@ npm run import:kordata -- --low-stock 5
 5. Vuelve a ejecutar el importador y conserva `data/products.json` intacto hasta una etapa posterior de publicacion.
 
 Este modulo no publica automaticamente. El catalogo publico actual, GitHub Pages, PWA, SEO, WhatsApp `50589468126` y el logo oficial STYLUS permanecen intactos.
+
+Confirmacion operativa: `data/products.json` no forma parte de la salida del importador Kordata y no se modifica al ejecutar `npm run import:kordata` ni `npm run test:kordata:sample`.
