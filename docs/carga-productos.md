@@ -4,20 +4,48 @@ Esta guía explica cómo reemplazar los productos de ejemplo por productos reale
 
 ## Archivos principales
 
-- `data/products.json`: base de productos visible en el catálogo.
+- `data/import/products.master.csv`: fuente maestra para cargar productos reales.
+- `data/import/products.generated.json`: borrador generado desde el CSV maestro.
+- `data/products.json`: base de productos visible en el catálogo público.
 - `data/products.template.json`: plantilla de referencia para nuevos productos.
 - `assets/products/`: carpeta para fotografías reales y galerías.
+- `reports/import-report.md`: reporte legible de validación.
+- `reports/import-report.json`: reporte estructurado de validación.
 
 ## Flujo recomendado
 
 1. Optimizar las imágenes del producto.
 2. Guardarlas en `assets/products/`.
-3. Copiar un objeto desde `data/products.template.json`.
-4. Pegarlo en `data/products.json`.
-5. Cambiar todos los campos por información real.
-6. Verificar que el `id` sea único.
-7. Verificar que las rutas de `imagen` y `galería` existan.
-8. Probar el catálogo, filtros, búsqueda y página individual.
+3. Completar o corregir una fila en `data/import/products.master.csv`.
+4. Ejecutar `npm run validate:products`.
+5. Revisar `reports/import-report.md`.
+6. Corregir advertencias o errores críticos.
+7. Ejecutar `npm run import:products`.
+8. Revisar `data/import/products.generated.json` como borrador.
+9. Ejecutar `npm run publish:products` solo cuando no existan advertencias críticas.
+10. Probar el catálogo, filtros, búsqueda y página individual.
+
+`data/products.json` no debe editarse como fuente principal ni reemplazarse con productos incompletos. Si necesitas cambiar datos comerciales, cambia primero el CSV maestro, genera el borrador y publica solo cuando el reporte esté listo.
+
+## Comandos
+
+```bash
+npm run import:products
+```
+
+Genera `data/import/products.generated.json` y reportes. No modifica el catálogo público.
+
+```bash
+npm run validate:products
+```
+
+Valida el CSV y genera reportes sin alterar datos de productos.
+
+```bash
+npm run publish:products
+```
+
+Intenta publicar en `data/products.json`. El script bloquea la publicación si detecta errores o advertencias críticas en categoría, marca, color o imagen.
 
 ## Recomendaciones para imágenes
 
@@ -114,6 +142,10 @@ Antes de publicar productos reales, confirma:
 - No cargues imágenes pesadas sin optimizar.
 - No borres los archivos de logo oficial en `assets/logo/`.
 
+## Migración desde Canva
+
+Para el flujo del Catálogo Maestro STYLUS 2026, consulta [docs/migracion-canva.md](migracion-canva.md).
+
 ## Qué no incluye esta fase
 
-La carga de productos reales sigue siendo manual por archivo JSON. No se implementa panel administrativo, login, carrito, inventario en tiempo real, ERP ni base de datos externa.
+La carga de productos reales sigue siendo por archivos del repositorio. No se implementa panel administrativo, login, carrito, inventario en tiempo real, ERP ni base de datos externa.

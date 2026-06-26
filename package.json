@@ -1,0 +1,11 @@
+{
+  "name": "stylus-catalogo-digital",
+  "version": "0.6.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "import:products": "node scripts/import-products.mjs",
+    "publish:products": "node scripts/import-products.mjs --publish",
+    "validate:products": "node scripts/import-products.mjs --validate-only"
+  }
+}

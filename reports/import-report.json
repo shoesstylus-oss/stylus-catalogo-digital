@@ -1,0 +1,299 @@
+{
+  "generatedAt": "2026-06-26T06:07:56.214Z",
+  "source": "data/import/products.master.csv",
+  "draftOutput": "data/import/products.generated.json",
+  "publishOutput": "data/products.json",
+  "mode": "publish",
+  "inventoryStatus": "migration_draft",
+  "note": "Las referencias extraídas desde Canva son borrador de migración y no inventario público final.",
+  "publishBlocked": true,
+  "summary": {
+    "rows": 10,
+    "products": 10,
+    "errors": 0,
+    "criticalWarnings": 40,
+    "warnings": 0
+  },
+  "issues": [
+    {
+      "type": "missing_category",
+      "severity": "critical_warning",
+      "row": 2,
+      "sku": "T22-1",
+      "message": "Producto sin categoría confirmada."
+    },
+    {
+      "type": "missing_brand",
+      "severity": "critical_warning",
+      "row": 2,
+      "sku": "T22-1",
+      "message": "Producto sin marca confirmada."
+    },
+    {
+      "type": "missing_color",
+      "severity": "critical_warning",
+      "row": 2,
+      "sku": "T22-1",
+      "message": "Producto sin color principal confirmado."
+    },
+    {
+      "type": "missing_image",
+      "severity": "critical_warning",
+      "row": 2,
+      "sku": "T22-1",
+      "message": "Producto sin imagen principal real; se usó placeholder técnico solo para borrador."
+    },
+    {
+      "type": "missing_category",
+      "severity": "critical_warning",
+      "row": 3,
+      "sku": "T21-1",
+      "message": "Producto sin categoría confirmada."
+    },
+    {
+      "type": "missing_brand",
+      "severity": "critical_warning",
+      "row": 3,
+      "sku": "T21-1",
+      "message": "Producto sin marca confirmada."
+    },
+    {
+      "type": "missing_color",
+      "severity": "critical_warning",
+      "row": 3,
+      "sku": "T21-1",
+      "message": "Producto sin color principal confirmado."
+    },
+    {
+      "type": "missing_image",
+      "severity": "critical_warning",
+      "row": 3,
+      "sku": "T21-1",
+      "message": "Producto sin imagen principal real; se usó placeholder técnico solo para borrador."
+    },
+    {
+      "type": "missing_category",
+      "severity": "critical_warning",
+      "row": 4,
+      "sku": "T655-18",
+      "message": "Producto sin categoría confirmada."
+    },
+    {
+      "type": "missing_brand",
+      "severity": "critical_warning",
+      "row": 4,
+      "sku": "T655-18",
+      "message": "Producto sin marca confirmada."
+    },
+    {
+      "type": "missing_color",
+      "severity": "critical_warning",
+      "row": 4,
+      "sku": "T655-18",
+      "message": "Producto sin color principal confirmado."
+    },
+    {
+      "type": "missing_image",
+      "severity": "critical_warning",
+      "row": 4,
+      "sku": "T655-18",
+      "message": "Producto sin imagen principal real; se usó placeholder técnico solo para borrador."
+    },
+    {
+      "type": "missing_category",
+      "severity": "critical_warning",
+      "row": 5,
+      "sku": "K998-3",
+      "message": "Producto sin categoría confirmada."
+    },
+    {
+      "type": "missing_brand",
+      "severity": "critical_warning",
+      "row": 5,
+      "sku": "K998-3",
+      "message": "Producto sin marca confirmada."
+    },
+    {
+      "type": "missing_color",
+      "severity": "critical_warning",
+      "row": 5,
+      "sku": "K998-3",
+      "message": "Producto sin color principal confirmado."
+    },
+    {
+      "type": "missing_image",
+      "severity": "critical_warning",
+      "row": 5,
+      "sku": "K998-3",
+      "message": "Producto sin imagen principal real; se usó placeholder técnico solo para borrador."
+    },
+    {
+      "type": "missing_category",
+      "severity": "critical_warning",
+      "row": 6,
+      "sku": "K991-2",
+      "message": "Producto sin categoría confirmada."
+    },
+    {
+      "type": "missing_brand",
+      "severity": "critical_warning",
+      "row": 6,
+      "sku": "K991-2",
+      "message": "Producto sin marca confirmada."
+    },
+    {
+      "type": "missing_color",
+      "severity": "critical_warning",
+      "row": 6,
+      "sku": "K991-2",
+      "message": "Producto sin color principal confirmado."
+    },
+    {
+      "type": "missing_image",
+      "severity": "critical_warning",
+      "row": 6,
+      "sku": "K991-2",
+      "message": "Producto sin imagen principal real; se usó placeholder técnico solo para borrador."
+    },
+    {
+      "type": "missing_category",
+      "severity": "critical_warning",
+      "row": 7,
+      "sku": "K998-2",
+      "message": "Producto sin categoría confirmada."
+    },
+    {
+      "type": "missing_brand",
+      "severity": "critical_warning",
+      "row": 7,
+      "sku": "K998-2",
+      "message": "Producto sin marca confirmada."
+    },
+    {
+      "type": "missing_color",
+      "severity": "critical_warning",
+      "row": 7,
+      "sku": "K998-2",
+      "message": "Producto sin color principal confirmado."
+    },
+    {
+      "type": "missing_image",
+      "severity": "critical_warning",
+      "row": 7,
+      "sku": "K998-2",
+      "message": "Producto sin imagen principal real; se usó placeholder técnico solo para borrador."
+    },
+    {
+      "type": "missing_category",
+      "severity": "critical_warning",
+      "row": 8,
+      "sku": "K997-3",
+      "message": "Producto sin categoría confirmada."
+    },
+    {
+      "type": "missing_brand",
+      "severity": "critical_warning",
+      "row": 8,
+      "sku": "K997-3",
+      "message": "Producto sin marca confirmada."
+    },
+    {
+      "type": "missing_color",
+      "severity": "critical_warning",
+      "row": 8,
+      "sku": "K997-3",
+      "message": "Producto sin color principal confirmado."
+    },
+    {
+      "type": "missing_image",
+      "severity": "critical_warning",
+      "row": 8,
+      "sku": "K997-3",
+      "message": "Producto sin imagen principal real; se usó placeholder técnico solo para borrador."
+    },
+    {
+      "type": "missing_category",
+      "severity": "critical_warning",
+      "row": 9,
+      "sku": "K997-1",
+      "message": "Producto sin categoría confirmada."
+    },
+    {
+      "type": "missing_brand",
+      "severity": "critical_warning",
+      "row": 9,
+      "sku": "K997-1",
+      "message": "Producto sin marca confirmada."
+    },
+    {
+      "type": "missing_color",
+      "severity": "critical_warning",
+      "row": 9,
+      "sku": "K997-1",
+      "message": "Producto sin color principal confirmado."
+    },
+    {
+      "type": "missing_image",
+      "severity": "critical_warning",
+      "row": 9,
+      "sku": "K997-1",
+      "message": "Producto sin imagen principal real; se usó placeholder técnico solo para borrador."
+    },
+    {
+      "type": "missing_category",
+      "severity": "critical_warning",
+      "row": 10,
+      "sku": "K998-1",
+      "message": "Producto sin categoría confirmada."
+    },
+    {
+      "type": "missing_brand",
+      "severity": "critical_warning",
+      "row": 10,
+      "sku": "K998-1",
+      "message": "Producto sin marca confirmada."
+    },
+    {
+      "type": "missing_color",
+      "severity": "critical_warning",
+      "row": 10,
+      "sku": "K998-1",
+      "message": "Producto sin color principal confirmado."
+    },
+    {
+      "type": "missing_image",
+      "severity": "critical_warning",
+      "row": 10,
+      "sku": "K998-1",
+      "message": "Producto sin imagen principal real; se usó placeholder técnico solo para borrador."
+    },
+    {
+      "type": "missing_category",
+      "severity": "critical_warning",
+      "row": 11,
+      "sku": "K997-6",
+      "message": "Producto sin categoría confirmada."
+    },
+    {
+      "type": "missing_brand",
+      "severity": "critical_warning",
+      "row": 11,
+      "sku": "K997-6",
+      "message": "Producto sin marca confirmada."
+    },
+    {
+      "type": "missing_color",
+      "severity": "critical_warning",
+      "row": 11,
+      "sku": "K997-6",
+      "message": "Producto sin color principal confirmado."
+    },
+    {
+      "type": "missing_image",
+      "severity": "critical_warning",
+      "row": 11,
+      "sku": "K997-6",
+      "message": "Producto sin imagen principal real; se usó placeholder técnico solo para borrador."
+    }
+  ]
+}
