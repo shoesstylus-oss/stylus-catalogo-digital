@@ -7,6 +7,7 @@ const rootDir = path.resolve(__dirname, "../..");
 
 const kordataInputPath = path.join(rootDir, "catalog-data", "exports", "kordata-products.generated.json");
 const enrichmentInputPath = path.join(rootDir, "catalog-data", "enrichment", "products.enrichment.csv");
+const imageMapInputPath = path.join(rootDir, "catalog-data", "images", "image-map.csv");
 const enrichedOutputPath = path.join(rootDir, "catalog-data", "exports", "stylus-products.enriched.json");
 const reportsDir = path.join(rootDir, "catalog-data", "reports");
 
@@ -41,6 +42,19 @@ const publicableRequirements = [
   "genero",
   "descripcion_corta",
   "imagen_principal"
+];
+
+const requiredImageMapColumns = [
+  "modelo",
+  "marca",
+  "color",
+  "sku",
+  "image_source",
+  "image_url",
+  "local_path",
+  "gallery",
+  "image_status",
+  "notas"
 ];
 
 function parseCsv(text) {
@@ -118,6 +132,10 @@ function productKey({ modelo = "", marca = "", color = "", categoria_original = 
   return [modelo, marca, color, categoria_original || categoria].map(normalizeKeyPart).join("|");
 }
 
+function imageKey({ modelo = "", marca = "", color = "" }) {
+  return [modelo, marca, color].map(normalizeKeyPart).join("|");
+}
+
 function slugify(value) {
   return normalizeText(value)
     .normalize("NFD")
@@ -162,6 +180,16 @@ function validateEnrichmentHeaders(rows, csvText) {
   return rows;
 }
 
+function validateImageMapHeaders(rows, csvText) {
+  const firstLine = csvText.split(/\r?\n/).find((line) => line.trim());
+  const headers = firstLine ? firstLine.split(",").map(normalizeHeader) : [];
+  const missing = requiredImageMapColumns.filter((column) => !headers.includes(column));
+  if (missing.length) {
+    throw new Error(`image-map.csv no contiene columnas obligatorias: ${missing.join(", ")}`);
+  }
+  return rows;
+}
+
 function buildEnrichmentIndex(rows) {
   const index = new Map();
   const duplicateKeys = new Set();
@@ -188,6 +216,20 @@ function buildEnrichmentIndex(rows) {
   return { index, duplicateKeys: [...duplicateKeys], invalidStates };
 }
 
+function buildImageIndex(rows) {
+  const bySku = new Map();
+  const byProduct = new Map();
+
+  rows.forEach((row, rowIndex) => {
+    const entry = { ...row, __rowNumber: rowIndex + 2 };
+    if (entry.sku) bySku.set(normalizeKeyPart(entry.sku), entry);
+    const key = imageKey(entry);
+    if (key.replace(/\|/g, "")) byProduct.set(key, entry);
+  });
+
+  return { bySku, byProduct };
+}
+
 function getKordataProducts(payload) {
   if (Array.isArray(payload)) return payload;
   if (Array.isArray(payload.products)) return payload.products;
@@ -201,13 +243,53 @@ function getMissingFields(product) {
   return missing;
 }
 
-function enrichProduct(kordataProduct, enrichment) {
+function resolveImage(kordataProduct, enrichment, imageIndex) {
+  const enrichmentImage = normalizeText(enrichment?.imagen_principal);
+  const enrichmentGallery = splitList(enrichment?.galeria);
+  if (enrichmentImage) {
+    return {
+      imagen_principal: enrichmentImage,
+      galeria: enrichmentGallery,
+      image_source: "enrichment",
+      image_status: "ENRICHMENT"
+    };
+  }
+
+  const skus = [kordataProduct.sku, ...(kordataProduct.skus || [])].filter(Boolean);
+  const bySkuMatch = skus.map((sku) => imageIndex.bySku.get(normalizeKeyPart(sku))).find(Boolean);
+  const byProductMatch = imageIndex.byProduct.get(imageKey(kordataProduct));
+  const imageMapMatch = bySkuMatch || byProductMatch;
+
+  if (!imageMapMatch) {
+    return {
+      imagen_principal: "",
+      galeria: [],
+      image_source: "",
+      image_status: "SIN_IMAGEN"
+    };
+  }
+
+  const localPath = normalizeText(imageMapMatch.local_path);
+  const imageUrl = normalizeText(imageMapMatch.image_url);
+  const image = localPath || imageUrl;
+
+  return {
+    imagen_principal: image,
+    galeria: splitList(imageMapMatch.gallery),
+    image_source: localPath ? "manual" : imageMapMatch.image_source || "kordata",
+    image_status: imageMapMatch.image_status || (image ? "ASIGNADA" : "SIN_IMAGEN"),
+    image_map_row: imageMapMatch.__rowNumber
+  };
+}
+
+function enrichProduct(kordataProduct, enrichment, imageIndex) {
   const categoriaOriginal = kordataProduct.categoria_original || kordataProduct.categoria || "";
   const hasEnrichment = Boolean(enrichment);
   const state = hasEnrichment ? enrichment.estado_enriquecimiento : "PENDIENTE";
   const nombreComercial = enrichment?.nombre_comercial || kordataProduct.nombre || "";
   const slug = enrichment?.slug || slugify([nombreComercial, kordataProduct.modelo, kordataProduct.color].filter(Boolean).join(" "));
   const precio = Number(kordataProduct.precioDeVenta || kordataProduct.precio || 0);
+  const image = resolveImage(kordataProduct, enrichment, imageIndex);
 
   const product = {
     id: kordataProduct.id || slug || productKey({ ...kordataProduct, categoria_original: categoriaOriginal }).replace(/\|/g, "-"),
@@ -236,9 +318,11 @@ function enrichProduct(kordataProduct, enrichment) {
     nuevo: parseBoolean(enrichment?.nuevo),
     destacado: parseBoolean(enrichment?.destacado),
     etiquetas: splitList(enrichment?.etiquetas),
-    imagen_principal: enrichment?.imagen_principal || "",
-    galeria: splitList(enrichment?.galeria),
+    imagen_principal: image.imagen_principal,
+    galeria: image.galeria,
     video_url: enrichment?.video_url || "",
+    image_source: image.image_source,
+    image_status: image.image_status,
     estado_enriquecimiento: state,
     fuente_datos: "Kordata + STYLUS",
     publicable: false,
@@ -246,6 +330,11 @@ function enrichProduct(kordataProduct, enrichment) {
       matched: hasEnrichment,
       sourceRow: enrichment?.__rowNumber || null,
       notas: enrichment?.notas || ""
+    },
+    image: {
+      source: image.image_source,
+      status: image.image_status,
+      imageMapRow: image.image_map_row || null
     }
   };
 
@@ -253,7 +342,7 @@ function enrichProduct(kordataProduct, enrichment) {
   return product;
 }
 
-function analyzeProducts(products, enrichmentRows, duplicateKeys, invalidStates) {
+function analyzeProducts(products, enrichmentRows, imageRows, duplicateKeys, invalidStates) {
   const productsWithEnrichment = products.filter((product) => product.enrichment.matched);
   const productsWithoutEnrichment = products.filter((product) => !product.enrichment.matched);
   const publicableProducts = products.filter((product) => product.publicable);
@@ -271,6 +360,7 @@ function analyzeProducts(products, enrichmentRows, duplicateKeys, invalidStates)
     totals: {
       kordataProducts: products.length,
       enrichmentRows: enrichmentRows.length,
+      imageRows: imageRows.length,
       productsWithEnrichment: productsWithEnrichment.length,
       productsWithoutEnrichment: productsWithoutEnrichment.length,
       publicableProducts: publicableProducts.length,
@@ -289,6 +379,26 @@ function analyzeProducts(products, enrichmentRows, duplicateKeys, invalidStates)
   };
 }
 
+function analyzeImages(products, imageRows) {
+  return {
+    generatedAt: new Date().toISOString(),
+    source: "catalog-data/images/image-map.csv",
+    totals: {
+      imageMapRows: imageRows.length,
+      products: products.length,
+      withImage: products.filter((product) => product.imagen_principal).length,
+      missingImage: products.filter((product) => !product.imagen_principal).length,
+      fromKordata: products.filter((product) => product.image_source === "kordata" || product.image_source === "azure_blob").length,
+      manual: products.filter((product) => product.image_source === "manual").length,
+      fromEnrichment: products.filter((product) => product.image_source === "enrichment").length
+    },
+    missing: products.filter((product) => !product.imagen_principal),
+    fromKordata: products.filter((product) => product.image_source === "kordata" || product.image_source === "azure_blob"),
+    manual: products.filter((product) => product.image_source === "manual"),
+    fromEnrichment: products.filter((product) => product.image_source === "enrichment")
+  };
+}
+
 function renderSummary(report) {
   return [
     "# Resumen de enriquecimiento comercial STYLUS",
@@ -303,6 +413,7 @@ function renderSummary(report) {
     "",
     `- Productos Kordata: ${report.totals.kordataProducts}`,
     `- Filas de enriquecimiento: ${report.totals.enrichmentRows}`,
+    `- Filas de mapa de imagenes: ${report.totals.imageRows}`,
     `- Productos con enriquecimiento: ${report.totals.productsWithEnrichment}`,
     `- Productos sin enriquecimiento: ${report.totals.productsWithoutEnrichment}`,
     `- Productos publicables: ${report.totals.publicableProducts}`,
@@ -311,6 +422,80 @@ function renderSummary(report) {
     `- Llaves de enriquecimiento duplicadas: ${report.totals.duplicateEnrichmentKeys}`,
     `- Estados de enriquecimiento invalidos: ${report.totals.invalidEnrichmentStates}`,
     ""
+  ].join("\n");
+}
+
+function renderImagesSummary(report) {
+  return [
+    "# Resumen de imagenes STYLUS",
+    "",
+    `- Generado: ${report.generatedAt}`,
+    `- Fuente: \`${report.source}\``,
+    `- Filas en mapa de imagenes: ${report.totals.imageMapRows}`,
+    `- Productos evaluados: ${report.totals.products}`,
+    `- Productos con imagen: ${report.totals.withImage}`,
+    `- Productos sin imagen: ${report.totals.missingImage}`,
+    `- Imagenes desde Kordata/Azure: ${report.totals.fromKordata}`,
+    `- Imagenes manuales STYLUS: ${report.totals.manual}`,
+    `- Imagenes desde enrichment: ${report.totals.fromEnrichment}`,
+    ""
+  ].join("\n");
+}
+
+function renderImagesMissing(report) {
+  return [
+    "# Productos sin imagen",
+    "",
+    report.missing.length
+      ? table(
+          ["Modelo", "Marca", "Color", "Categoria original", "Estado enriquecimiento"],
+          report.missing.map((product) => [
+            product.modelo,
+            product.marca,
+            product.color,
+            product.categoria_original,
+            product.estado_enriquecimiento
+          ])
+        )
+      : "No hay productos sin imagen.\n"
+  ].join("\n");
+}
+
+function renderImagesFromKordata(report) {
+  return [
+    "# Imagenes desde Kordata / Azure Blob Storage",
+    "",
+    report.fromKordata.length
+      ? table(
+          ["Modelo", "Marca", "Color", "Imagen", "Estado"],
+          report.fromKordata.map((product) => [
+            product.modelo,
+            product.marca,
+            product.color,
+            product.imagen_principal,
+            product.image_status
+          ])
+        )
+      : "No hay productos usando imagenes desde Kordata/Azure.\n"
+  ].join("\n");
+}
+
+function renderImagesManual(report) {
+  return [
+    "# Imagenes manuales STYLUS",
+    "",
+    report.manual.length
+      ? table(
+          ["Modelo", "Marca", "Color", "Imagen", "Estado"],
+          report.manual.map((product) => [
+            product.modelo,
+            product.marca,
+            product.color,
+            product.imagen_principal,
+            product.image_status
+          ])
+        )
+      : "No hay productos usando imagenes manuales STYLUS.\n"
   ].join("\n");
 }
 
@@ -398,13 +583,17 @@ async function main() {
     readFile(kordataInputPath, "utf8"),
     readFile(enrichmentInputPath, "utf8")
   ]);
+  const imageMapText = await readFile(imageMapInputPath, "utf8").catch(() => requiredImageMapColumns.join(","));
 
   const kordataPayload = JSON.parse(kordataText);
   const kordataProducts = getKordataProducts(kordataPayload);
   const enrichmentRows = validateEnrichmentHeaders(parseCsv(enrichmentText), enrichmentText);
+  const imageRows = validateImageMapHeaders(parseCsv(imageMapText), imageMapText);
   const { index, duplicateKeys, invalidStates } = buildEnrichmentIndex(enrichmentRows);
-  const products = kordataProducts.map((product) => enrichProduct(product, index.get(productKey(product))));
-  const report = analyzeProducts(products, enrichmentRows, duplicateKeys, invalidStates);
+  const imageIndex = buildImageIndex(imageRows);
+  const products = kordataProducts.map((product) => enrichProduct(product, index.get(productKey(product)), imageIndex));
+  const report = analyzeProducts(products, enrichmentRows, imageRows, duplicateKeys, invalidStates);
+  const imageReport = analyzeImages(products, imageRows);
 
   await mkdir(path.dirname(enrichedOutputPath), { recursive: true });
   await mkdir(reportsDir, { recursive: true });
@@ -413,6 +602,10 @@ async function main() {
   await writeFile(path.join(reportsDir, "enrichment-missing-data.md"), `${renderMissingData(report)}\n`, "utf8");
   await writeFile(path.join(reportsDir, "enrichment-ready-to-publish.md"), `${renderReadyToPublish(report)}\n`, "utf8");
   await writeFile(path.join(reportsDir, "enrichment-pending.md"), `${renderPending(report)}\n`, "utf8");
+  await writeFile(path.join(reportsDir, "images-summary.md"), `${renderImagesSummary(imageReport)}\n`, "utf8");
+  await writeFile(path.join(reportsDir, "images-missing.md"), `${renderImagesMissing(imageReport)}\n`, "utf8");
+  await writeFile(path.join(reportsDir, "images-from-kordata.md"), `${renderImagesFromKordata(imageReport)}\n`, "utf8");
+  await writeFile(path.join(reportsDir, "images-manual.md"), `${renderImagesManual(imageReport)}\n`, "utf8");
 
   console.log(
     `Enriquecimiento STYLUS generado: ${products.length} productos, ${report.totals.productsWithEnrichment} con enriquecimiento, ${report.totals.publicableProducts} publicables.`
