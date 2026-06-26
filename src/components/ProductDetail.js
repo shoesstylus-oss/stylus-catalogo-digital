@@ -5,11 +5,12 @@ import { productWhatsappUrl } from "../utils/whatsapp.js";
 import { productCard } from "./ProductCard.js";
 
 export function productDetail(product, relatedProducts) {
+  const colors = product.colores?.length ? product.colores : [product.color];
   const gallery = (product.galería?.length ? product.galería : [product.imagen])
     .map(
       (image) => `
         <figure class="gallery-frame">
-          <img src="${imagePath(image, "..")}" alt="${escapeHtml(product.nombre)}" loading="lazy" width="900" height="640">
+          <img src="${imagePath(image, "..")}" alt="${escapeHtml(product.nombre)}" loading="lazy" decoding="async" width="900" height="640">
         </figure>
       `
     )
@@ -30,8 +31,9 @@ export function productDetail(product, relatedProducts) {
         <p class="detail-description">${escapeHtml(product.descripción)}</p>
         <dl class="detail-specs">
           <div><dt>${t("labels.sku")}</dt><dd>${escapeHtml(product.sku)}</dd></div>
+          <div><dt>${t("filters.category")}</dt><dd>${escapeHtml(product["categoría"])}</dd></div>
           <div><dt>${t("labels.sizes")}</dt><dd>${product.tallas.map(escapeHtml).join(", ")}</dd></div>
-          <div><dt>${t("filters.color")}</dt><dd>${escapeHtml(product.color)}</dd></div>
+          <div><dt>${t("filters.color")}</dt><dd>${colors.map(escapeHtml).join(", ")}</dd></div>
           <div><dt>${t("filters.gender")}</dt><dd>${escapeHtml(product["género"])}</dd></div>
           <div><dt>${t("labels.status")}</dt><dd>${escapeHtml(product.estado)}</dd></div>
         </dl>

@@ -23,7 +23,7 @@ export function createInitialFilters() {
 
 export function getFilterOptions(products, field) {
   const values = products.flatMap((product) => {
-    const value = product[field];
+    const value = field === "color" && product.colores?.length ? product.colores : product[field];
     return Array.isArray(value) ? value : [value];
   });
 
@@ -43,7 +43,8 @@ export function getActiveFilterLabels(filters) {
 export function productMatchesFilters(product, filters) {
   const fieldMatches = FILTER_FIELDS.every(({ key, multiValue }) => {
     if (!filters[key].size) return true;
-    const productValues = multiValue ? product[key] : [product[key]];
+    const value = key === "color" && product.colores?.length ? product.colores : product[key];
+    const productValues = multiValue || Array.isArray(value) ? value : [value];
     return productValues.some((value) => filters[key].has(value));
   });
 
@@ -61,6 +62,7 @@ export function productMatchesFilters(product, filters) {
     product["categoría"],
     product["género"],
     product.color,
+    ...(product.colores || []),
     product.estado,
     product.descripción,
     product.tallas.join(" ")
