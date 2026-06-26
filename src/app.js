@@ -5,26 +5,27 @@ const searchInput = document.querySelector("#search");
 const categoryFilters = document.querySelector("#category-filters");
 const emptyState = document.querySelector("#empty-state");
 const productCount = document.querySelector("#product-count");
+const heroProductTotal = document.querySelector("#hero-product-total");
+const heroCategoryTotal = document.querySelector("#hero-category-total");
 
 let activeCategory = "Todos";
 
-function createProductImage(product) {
+function createFallbackImage(product) {
   const svg = `
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 460" role="img" aria-label="${product.name}">
       <defs>
         <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
-          <stop offset="0" stop-color="${product.accent}" stop-opacity=".95"/>
-          <stop offset="1" stop-color="#111827"/>
+          <stop offset="0" stop-color="${product.accent}" stop-opacity=".96"/>
+          <stop offset="1" stop-color="#171a21"/>
         </linearGradient>
       </defs>
-      <rect width="640" height="460" rx="36" fill="url(#bg)"/>
-      <circle cx="496" cy="98" r="84" fill="#ffffff" opacity=".12"/>
-      <circle cx="118" cy="348" r="112" fill="#ffffff" opacity=".08"/>
-      <path d="M146 286c65-28 121-43 183-43 59 0 109 14 165 43 15 8 24 24 20 41l-8 32H116l6-30c4-20 13-35 24-43Z" fill="#fff" opacity=".9"/>
-      <path d="M181 261c34-65 76-102 130-112 46 37 94 74 144 112H181Z" fill="#f7f7f7" opacity=".78"/>
-      <path d="M242 223h122" stroke="${product.accent}" stroke-width="16" stroke-linecap="round" opacity=".88"/>
-      <text x="52" y="86" fill="#fff" font-size="40" font-family="Inter, Arial" font-weight="800">STYLUS</text>
-      <text x="52" y="132" fill="#fff" font-size="25" font-family="Inter, Arial" opacity=".82">${product.imageLabel}</text>
+      <rect width="640" height="460" rx="34" fill="url(#bg)"/>
+      <circle cx="500" cy="98" r="86" fill="#ffffff" opacity=".12"/>
+      <circle cx="130" cy="350" r="118" fill="#ffffff" opacity=".08"/>
+      <path d="M122 318c72-40 138-60 207-60 62 0 122 18 188 60 15 10 21 31 11 46H109c-9-17-3-37 13-46Z" fill="#fff" opacity=".86"/>
+      <path d="M188 278c32-68 77-109 135-122 46 38 95 79 147 122H188Z" fill="#f7f7f7" opacity=".78"/>
+      <text x="52" y="88" fill="#fff" font-size="40" font-family="Inter, Arial" font-weight="900">STYLUS</text>
+      <text x="52" y="134" fill="#fff" font-size="25" font-family="Inter, Arial" opacity=".82">${product.imageLabel}</text>
     </svg>
   `;
 
@@ -32,8 +33,14 @@ function createProductImage(product) {
 }
 
 function whatsappLink(product) {
-  const text = `Hola STYLUS, quiero informacion para pedido mayorista de ${product.name} (${product.category}) en tallas ${product.sizes.join(", ")}.`;
+  const text = `Hola STYLUS, quiero informacion para pedido mayorista de ${product.name} (${product.sku}) en tallas ${product.sizes.join(", ")}.`;
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+}
+
+function renderHeroStats() {
+  const categories = new Set(products.map((product) => product.category));
+  heroProductTotal.textContent = `${products.length} productos`;
+  heroCategoryTotal.textContent = categories.size;
 }
 
 function renderCategoryFilters() {
@@ -58,8 +65,10 @@ function renderCategoryFilters() {
 function productMatchesSearch(product, query) {
   const haystack = [
     product.name,
+    product.sku,
     product.category,
     product.price,
+    product.availability,
     product.description,
     product.sizes.join(" ")
   ]
@@ -90,15 +99,24 @@ function renderProducts() {
       (product) => `
         <article class="product-card">
           <div class="product-media">
-            <img src="${createProductImage(product)}" alt="${product.name}" loading="lazy">
+            <img
+              src="${product.image}"
+              alt="${product.name}"
+              loading="lazy"
+              data-fallback="${createFallbackImage(product)}"
+            >
             ${product.featured ? '<span class="badge">Destacado</span>' : ""}
           </div>
           <div class="product-body">
             <div>
-              <p class="category">${product.category}</p>
+              <div class="product-meta">
+                <p class="category">${product.category}</p>
+                <span>${product.sku}</span>
+              </div>
               <h3>${product.name}</h3>
               <p class="description">${product.description}</p>
             </div>
+            <div class="availability">${product.availability}</div>
             <div class="sizes" aria-label="Tallas disponibles">
               ${product.sizes.map((size) => `<span>${size}</span>`).join("")}
             </div>
@@ -111,6 +129,16 @@ function renderProducts() {
       `
     )
     .join("");
+
+  grid.querySelectorAll("img[data-fallback]").forEach((image) => {
+    image.addEventListener(
+      "error",
+      () => {
+        image.src = image.dataset.fallback;
+      },
+      { once: true }
+    );
+  });
 }
 
 categoryFilters.addEventListener("click", (event) => {
@@ -127,5 +155,6 @@ categoryFilters.addEventListener("click", (event) => {
 
 searchInput.addEventListener("input", renderProducts);
 
+renderHeroStats();
 renderCategoryFilters();
 renderProducts();

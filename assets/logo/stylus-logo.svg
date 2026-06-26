@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 120" role="img" aria-labelledby="title desc">
+  <title id="title">Tiendas STYLUS</title>
+  <desc id="desc">Logo oficial base para el catalogo digital de Tiendas STYLUS.</desc>
+  <rect width="360" height="120" rx="20" fill="#14161b"/>
+  <g transform="translate(18 18)">
+    <rect width="84" height="84" rx="18" fill="#ffffff"/>
+    <path d="M16 54c13-9 25-13 38-11 10 2 18 0 26-7" fill="none" stroke="#d84a3a" stroke-width="8" stroke-linecap="round"/>
+    <path d="M16 66h54c8 0 12-5 13-13H37c-10 0-17 4-21 13Z" fill="#14161b"/>
+    <path d="M29 43c8-16 19-25 33-27 6 6 13 12 20 20-12 6-24 8-36 6-6-1-12-1-17 1Z" fill="#176b63"/>
+  </g>
+  <text x="124" y="55" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="900">STYLUS</text>
+  <text x="126" y="82" fill="#d8dde4" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="700">Tu proveedor mayorista de confianza</text>
+</svg>

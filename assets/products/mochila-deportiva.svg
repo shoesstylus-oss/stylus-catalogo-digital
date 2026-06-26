@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 640" role="img" aria-labelledby="title desc">
+  <title id="title">Mochila deportiva</title>
+  <desc id="desc">Imagen base reemplazable para producto STYLUS.</desc>
+  <rect width="900" height="640" rx="48" fill="#b7791f"/>
+  <path d="M346 214c0-61 41-101 104-101s104 40 104 101" fill="none" stroke="#fff" stroke-width="28" stroke-linecap="round"/>
+  <rect x="300" y="202" width="300" height="334" rx="64" fill="#fff"/>
+  <rect x="348" y="348" width="204" height="118" rx="28" fill="#f1e5d0"/>
+  <path d="M376 262h148" stroke="#b7791f" stroke-width="20" stroke-linecap="round"/>
+  <text x="70" y="112" fill="#fff" font-family="Inter, Arial, sans-serif" font-size="52" font-weight="900">STYLUS</text>
+  <text x="70" y="164" fill="#fff" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="800" opacity=".82">Accesorios</text>
+</svg>

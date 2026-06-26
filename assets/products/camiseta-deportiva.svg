@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 640" role="img" aria-labelledby="title desc">
+  <title id="title">Camiseta deportiva</title>
+  <desc id="desc">Imagen base reemplazable para producto STYLUS.</desc>
+  <rect width="900" height="640" rx="48" fill="#225f91"/>
+  <path d="M308 156h284l94 96-74 80-50-47v226H338V285l-50 47-74-80 94-96Z" fill="#fff"/>
+  <path d="M386 156c6 34 28 52 64 52s58-18 64-52H386Z" fill="#225f91"/>
+  <path d="M386 326h128" stroke="#225f91" stroke-width="20" stroke-linecap="round"/>
+  <text x="70" y="112" fill="#fff" font-family="Inter, Arial, sans-serif" font-size="52" font-weight="900">STYLUS</text>
+  <text x="70" y="164" fill="#fff" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="800" opacity=".82">Camiseta</text>
+</svg>
