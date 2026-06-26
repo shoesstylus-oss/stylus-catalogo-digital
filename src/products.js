@@ -2,68 +2,86 @@ export const WHATSAPP_NUMBER = "50589468126";
 
 export const products = [
   {
-    id: "runner-pro-negro",
+    id: "tenis-deportivo-hombre",
+    sku: "STY-CAL-001",
     name: "Tenis deportivo para hombre",
     category: "Calzado",
     price: "Consultar precio",
     sizes: ["38", "39", "40", "41", "42", "43"],
+    availability: "Disponible para consulta",
     featured: true,
-    accent: "#2f6f73",
+    accent: "#176b63",
+    image: "assets/products/tenis-deportivo-hombre.svg",
     imageLabel: "Calzado",
-    description: "Modelo base para cargar referencias reales de calzado deportivo."
+    description: "Modelo deportivo para rotación mayorista. Reemplaza la imagen SVG por fotografía real cuando esté disponible."
   },
   {
-    id: "urban-flex-blanco",
+    id: "tenis-urbano-deportivo",
+    sku: "STY-CAL-002",
     name: "Tenis urbano deportivo",
     category: "Calzado",
     price: "Consultar precio",
     sizes: ["37", "38", "39", "40", "41"],
+    availability: "Disponible para consulta",
     featured: true,
-    accent: "#d64f3c",
+    accent: "#c43f32",
+    image: "assets/products/tenis-urbano-deportivo.svg",
     imageLabel: "Urbano",
-    description: "Producto base para consultar disponibilidad y tallas por WhatsApp."
+    description: "Silueta casual deportiva para clientes minoristas y revendedores."
   },
   {
-    id: "set-training-dama",
+    id: "conjunto-deportivo-dama",
+    sku: "STY-ROP-001",
     name: "Conjunto deportivo para dama",
     category: "Ropa",
     price: "Consultar precio",
     sizes: ["S", "M", "L", "XL"],
+    availability: "Disponible para consulta",
     featured: false,
-    accent: "#6f5cc2",
+    accent: "#7b4bb3",
+    image: "assets/products/conjunto-deportivo-dama.svg",
     imageLabel: "Training",
-    description: "Categoria inicial para ropa deportiva femenina de venta mayorista."
+    description: "Referencia inicial para ropa deportiva femenina de venta mayorista."
   },
   {
-    id: "camiseta-performance",
+    id: "camiseta-deportiva",
+    sku: "STY-ROP-002",
     name: "Camiseta deportiva",
     category: "Ropa",
     price: "Consultar precio",
     sizes: ["S", "M", "L", "XL", "XXL"],
+    availability: "Disponible para consulta",
     featured: false,
-    accent: "#1f7a4d",
+    accent: "#225f91",
+    image: "assets/products/camiseta-deportiva.svg",
     imageLabel: "Performance",
     description: "Producto base para organizar estilos, tallas y colores disponibles."
   },
   {
-    id: "mochila-active",
+    id: "mochila-deportiva",
+    sku: "STY-ACC-001",
     name: "Mochila deportiva",
     category: "Accesorios",
     price: "Consultar precio",
-    sizes: ["Unica"],
+    sizes: ["Única"],
+    availability: "Disponible para consulta",
     featured: true,
-    accent: "#bb7a24",
+    accent: "#b7791f",
+    image: "assets/products/mochila-deportiva.svg",
     imageLabel: "Mochila",
-    description: "Accesorio base para complementar pedidos mayoristas STYLUS."
+    description: "Accesorio para complementar pedidos mayoristas STYLUS."
   },
   {
-    id: "gorra-stylus-basic",
+    id: "gorra-deportiva",
+    sku: "STY-ACC-002",
     name: "Gorra deportiva",
     category: "Accesorios",
     price: "Consultar precio",
     sizes: ["Ajustable"],
+    availability: "Disponible para consulta",
     featured: false,
-    accent: "#3f4654",
+    accent: "#364150",
+    image: "assets/products/gorra-deportiva.svg",
     imageLabel: "STYLUS",
     description: "Producto base para cargar colores y existencias oficiales."
   }

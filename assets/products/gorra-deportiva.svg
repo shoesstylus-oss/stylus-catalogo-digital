@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 640" role="img" aria-labelledby="title desc">
+  <title id="title">Gorra deportiva</title>
+  <desc id="desc">Imagen base reemplazable para producto STYLUS.</desc>
+  <rect width="900" height="640" rx="48" fill="#364150"/>
+  <path d="M262 372c22-100 96-158 199-158 95 0 166 54 193 145 64 5 111 24 142 58 16 18 6 47-18 50-168 25-363 29-581 13-36-3-48-50-17-69 25-16 52-29 82-39Z" fill="#fff"/>
+  <path d="M316 363c24-64 75-101 145-101 67 0 119 36 146 101H316Z" fill="#e4e8ec"/>
+  <text x="385" y="344" fill="#364150" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="900">S</text>
+  <text x="70" y="112" fill="#fff" font-family="Inter, Arial, sans-serif" font-size="52" font-weight="900">STYLUS</text>
+  <text x="70" y="164" fill="#fff" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="800" opacity=".82">Gorra deportiva</text>
+</svg>

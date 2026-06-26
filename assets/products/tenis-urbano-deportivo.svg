@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 640" role="img" aria-labelledby="title desc">
+  <title id="title">Tenis urbano deportivo</title>
+  <desc id="desc">Imagen base reemplazable para producto STYLUS.</desc>
+  <rect width="900" height="640" rx="48" fill="#c43f32"/>
+  <path d="M0 480c140-80 290-96 450-48 142 42 290 20 450-68v276H0Z" fill="#14161b" opacity=".20"/>
+  <path d="M170 402c90-36 174-55 254-55 102 0 201 28 296 82 17 10 22 32 11 49H154c-10-30-4-55 16-76Z" fill="#fff"/>
+  <path d="M242 343c42-69 98-112 168-129 67 44 138 87 213 129H242Z" fill="#f1f4f6"/>
+  <path d="M344 306h206" stroke="#c43f32" stroke-width="22" stroke-linecap="round"/>
+  <text x="70" y="112" fill="#fff" font-family="Inter, Arial, sans-serif" font-size="52" font-weight="900">STYLUS</text>
+  <text x="70" y="164" fill="#fff" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="800" opacity=".82">Urbano deportivo</text>
+</svg>

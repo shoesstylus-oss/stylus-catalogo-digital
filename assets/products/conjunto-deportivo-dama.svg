@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 640" role="img" aria-labelledby="title desc">
+  <title id="title">Conjunto deportivo para dama</title>
+  <desc id="desc">Imagen base reemplazable para producto STYLUS.</desc>
+  <rect width="900" height="640" rx="48" fill="#7b4bb3"/>
+  <circle cx="714" cy="126" r="136" fill="#fff" opacity=".12"/>
+  <path d="M315 162h270l72 150-81 42-34-70v230H358V284l-34 70-81-42 72-150Z" fill="#fff"/>
+  <path d="M380 188h140v98H380Z" fill="#e9e3f4"/>
+  <path d="M376 360h148l54 154H322l54-154Z" fill="#e9e3f4"/>
+  <text x="70" y="112" fill="#fff" font-family="Inter, Arial, sans-serif" font-size="52" font-weight="900">STYLUS</text>
+  <text x="70" y="164" fill="#fff" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="800" opacity=".82">Ropa deportiva</text>
+</svg>
