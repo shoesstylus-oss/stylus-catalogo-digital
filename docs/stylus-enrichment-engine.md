@@ -37,7 +37,9 @@ Estados permitidos:
 - `COMPLETO`
 - `PUBLICADO`
 
-Usa `products.enrichment.template.csv` como referencia. Sus filas son ficticias y controladas; no contienen costos reales.
+`products.enrichment.csv` es la base operativa que el equipo STYLUS llena con datos reales de negocio, contenido comercial aprobado, rutas de imagenes publicables y estados de revision. No debe llenarse con datos inventados cuando se trabaje sobre catalogo real.
+
+Usa `products.enrichment.template.csv` solo como referencia de estructura y pruebas. Sus filas son ficticias y controladas; no contienen costos reales, inventario real ni informacion sensible.
 
 ## Ejecutar el motor
 
@@ -54,6 +56,25 @@ El comando genera:
 - `catalog-data/reports/enrichment-missing-data.md`
 - `catalog-data/reports/enrichment-ready-to-publish.md`
 - `catalog-data/reports/enrichment-pending.md`
+
+## Prueba versionada con muestra controlada
+
+Para validar el flujo completo sin usar informacion sensible:
+
+```bash
+npm run test:enrichment:sample
+```
+
+La prueba ejecutable `integrations/stylus/verify-enrichment-sample.mjs` hace lo siguiente:
+
+1. Lee la muestra Kordata controlada `catalog-data/kordata/samples/kordata-inventory.sample.xlsx`.
+2. Usa temporalmente la plantilla ficticia `products.enrichment.template.csv` como base de enriquecimiento.
+3. Genera 2 productos enriquecidos.
+4. Confirma que `URB-100` queda `publicable = true`, `estado_enriquecimiento = COMPLETO` y `disponibleTotal = 10`.
+5. Confirma que `SAN-200` queda `publicable = false` por `estado_enriquecimiento = EN_REVISION`.
+6. Confirma que `data/products.json` no se modifica.
+
+La prueba restaura los archivos generados al finalizar para no dejar datos de muestra en las salidas operativas.
 
 ## Criterio publicable
 
@@ -105,7 +126,7 @@ No uses URLs privadas, enlaces temporales ni archivos que dependan de sesiones p
 
 ## Evitar datos sensibles
 
-No subas exportaciones reales de Kordata, costos reales en ejemplos, inventario operativo vigente, datos de proveedores, ubicaciones internas no publicables ni credenciales. Las muestras versionadas deben ser ficticias, anonimizadas o controladas.
+No subas exportaciones reales de Kordata, costos reales en ejemplos, inventario operativo vigente, datos de proveedores, ubicaciones internas no publicables ni credenciales. Las muestras versionadas deben ser ficticias, anonimizadas o controladas. Los ejemplos incluidos en este modulo no contienen costos reales ni inventario real.
 
 ## Seguridad
 
