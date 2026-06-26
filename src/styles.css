@@ -132,6 +132,12 @@ a {
   letter-spacing: 0;
 }
 
+.brand-slogan {
+  margin: 0 0 14px;
+  color: rgba(255, 255, 255, 0.84);
+  font-weight: 700;
+}
+
 .hero h1 {
   max-width: 780px;
   font-size: clamp(42px, 8vw, 78px);
@@ -456,10 +462,6 @@ a {
   .catalog-section,
   .site-footer {
     width: min(100% - 24px, 1120px);
-  }
-
-  .brand small {
-    display: none;
   }
 
   .hero h1 {
