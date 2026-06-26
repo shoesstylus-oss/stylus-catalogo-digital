@@ -10,7 +10,7 @@ El proyecto es una aplicación web estática compatible con GitHub Pages. La exp
 - `pages/product.html`: ficha individual de producto con galería, descripción, tallas, disponibilidad, WhatsApp y productos relacionados.
 
 La información comercial se carga desde archivos JSON locales y las imágenes viven dentro del repositorio.
-Desde la Fase 6, `data/products.json` se puede generar desde `data/import/products.master.csv` usando el importador local.
+Desde la Fase 6, el flujo recomendado genera primero un borrador en `data/import/products.generated.json`. `data/products.json` se mantiene como catálogo público vigente y solo se sobrescribe con `npm run publish:products` cuando no hay advertencias críticas.
 
 ## Estructura principal
 
@@ -21,6 +21,8 @@ stylus-catalogo-digital/
 |   `-- products/
 |-- data/
 |   |-- import/
+|   |   |-- products.generated.json
+|   |   `-- products.master.csv
 |   |-- i18n.es.json
 |   |-- products.json
 |   `-- products.template.json
@@ -53,7 +55,7 @@ stylus-catalogo-digital/
 
 ## Datos
 
-`data/import/products.master.csv` es la fuente maestra recomendada para cargas reales. El script `scripts/import-products.mjs` transforma el CSV en `data/products.json`.
+`data/import/products.master.csv` es la fuente maestra recomendada para cargas reales. El script `scripts/import-products.mjs` transforma el CSV en `data/import/products.generated.json` como borrador.
 
 `data/products.json` es la fuente de lectura de la plataforma. Cada producto incluye:
 
@@ -62,7 +64,7 @@ stylus-catalogo-digital/
 - Venta: `precio`, `precio_mayorista`, `estado`, `nuevo`, `destacado`.
 - Contenido: `imagen`, `galería`, `descripción`.
 
-El importador también genera reportes en `reports/` para detectar SKU duplicados, campos pendientes e imágenes faltantes antes de publicar.
+El importador también genera reportes en `reports/` para detectar SKU duplicados, campos pendientes e imágenes faltantes antes de publicar. El modo `--publish` solo escribe `data/products.json` cuando no hay errores ni advertencias críticas.
 
 Las categorías comerciales actuales son:
 

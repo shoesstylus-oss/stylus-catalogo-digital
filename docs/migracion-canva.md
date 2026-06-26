@@ -1,6 +1,6 @@
 # Migración del Catálogo Maestro Canva STYLUS 2026
 
-Esta guía explica cómo convertir información comercial del **Catálogo Maestro STYLUS 2026** en datos estructurados para la plataforma digital, sin editar directamente `data/products.json` y sin integrar todavía Canva API, login, carrito, ERP, panel administrativo ni base de datos externa.
+Esta guía explica cómo convertir información comercial del **Catálogo Maestro STYLUS 2026** en datos estructurados para la plataforma digital, sin reemplazar el catálogo público con productos incompletos y sin integrar todavía Canva API, login, carrito, ERP, panel administrativo ni base de datos externa.
 
 ## Fuente inicial
 
@@ -20,6 +20,8 @@ En esta fase se cargaron 10 referencias visibles:
 - `K997-6`
 
 Solo se registraron datos visibles: código, tallas, precio unitario, precio mayorista y promoción cuando aparece. Si un dato no era visible o no estaba confirmado, se dejó vacío o como `Pendiente`.
+
+Estas 10 referencias son **borrador de migración**, no inventario público final.
 
 ## Archivo maestro
 
@@ -45,7 +47,7 @@ sku,codigo_interno,nombre,marca,modelo,categoria,subcategoria,genero,color_princ
 - Conserva precios en formato comercial: `C$ 1200`, `C$ 1100`, `2 x C$ 1200` o `Consultar`.
 - Si un dato no está confirmado, usa `Pendiente` o deja el campo vacío.
 
-## Ejecutar importación
+## Generar borrador
 
 Desde la raíz del repositorio:
 
@@ -56,10 +58,12 @@ npm run import:products
 Este comando lee `data/import/products.master.csv` y genera:
 
 ```text
-data/products.json
+data/import/products.generated.json
 reports/import-report.json
 reports/import-report.md
 ```
+
+No modifica `data/products.json`.
 
 ## Validar sin alterar productos
 
@@ -68,6 +72,16 @@ Para revisar el CSV y generar reportes sin sobrescribir `data/products.json`:
 ```bash
 npm run validate:products
 ```
+
+## Publicar en el catálogo público
+
+Para publicar el borrador en el catálogo visible:
+
+```bash
+npm run publish:products
+```
+
+Este comando solo sobrescribe `data/products.json` si no existen errores ni advertencias críticas. La publicación se bloquea cuando faltan categoría, marca, color principal o imagen real.
 
 ## Revisar reportes
 
@@ -111,19 +125,23 @@ assets/products/t22-1-principal.webp,"assets/products/t22-1-principal.webp, asse
 3. Corrige el dato en `data/import/products.master.csv`.
 4. Ejecuta `npm run validate:products`.
 5. Cuando el reporte esté limpio o aceptado, ejecuta `npm run import:products`.
+6. Publica con `npm run publish:products` únicamente cuando los productos estén listos para clientes.
 
 ## Publicar en GitHub Pages
 
 1. Ejecuta `npm run import:products`.
-2. Verifica que `data/products.json` esté actualizado.
-3. Revisa el catálogo localmente.
-4. Haz commit de CSV, JSON, reportes, imágenes y documentación.
-5. Abre un Pull Request hacia `main`.
-6. Al hacer merge, GitHub Pages publica desde el flujo existente de GitHub Actions.
+2. Revisa `data/import/products.generated.json` y los reportes.
+3. Ejecuta `npm run publish:products` solo si no hay advertencias críticas.
+4. Verifica que `data/products.json` esté actualizado con productos publicables.
+5. Revisa el catálogo localmente.
+6. Haz commit de CSV, borrador, JSON público si cambió, reportes, imágenes y documentación.
+7. Abre un Pull Request hacia `main`.
+8. Al hacer merge, GitHub Pages publica desde el flujo existente de GitHub Actions.
 
 ## Reglas de esta fase
 
 - No editar `data/products.json` manualmente como fuente principal.
+- No reemplazar `data/products.json` con referencias incompletas en estado `Pendiente`.
 - No inventar datos no visibles del catálogo maestro.
 - No crear integración directa con Canva API.
 - No implementar login, carrito, checkout, ERP, inventario, base de datos externa ni panel administrativo.

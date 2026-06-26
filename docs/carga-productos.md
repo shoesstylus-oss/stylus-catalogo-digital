@@ -5,7 +5,8 @@ Esta guía explica cómo reemplazar los productos de ejemplo por productos reale
 ## Archivos principales
 
 - `data/import/products.master.csv`: fuente maestra para cargar productos reales.
-- `data/products.json`: base de productos visible en el catálogo, generada por el importador.
+- `data/import/products.generated.json`: borrador generado desde el CSV maestro.
+- `data/products.json`: base de productos visible en el catálogo público.
 - `data/products.template.json`: plantilla de referencia para nuevos productos.
 - `assets/products/`: carpeta para fotografías reales y galerías.
 - `reports/import-report.md`: reporte legible de validación.
@@ -20,9 +21,31 @@ Esta guía explica cómo reemplazar los productos de ejemplo por productos reale
 5. Revisar `reports/import-report.md`.
 6. Corregir advertencias o errores críticos.
 7. Ejecutar `npm run import:products`.
-8. Probar el catálogo, filtros, búsqueda y página individual.
+8. Revisar `data/import/products.generated.json` como borrador.
+9. Ejecutar `npm run publish:products` solo cuando no existan advertencias críticas.
+10. Probar el catálogo, filtros, búsqueda y página individual.
 
-`data/products.json` no debe editarse como fuente principal. Si necesitas cambiar datos comerciales, cambia primero el CSV maestro y vuelve a generar el JSON.
+`data/products.json` no debe editarse como fuente principal ni reemplazarse con productos incompletos. Si necesitas cambiar datos comerciales, cambia primero el CSV maestro, genera el borrador y publica solo cuando el reporte esté listo.
+
+## Comandos
+
+```bash
+npm run import:products
+```
+
+Genera `data/import/products.generated.json` y reportes. No modifica el catálogo público.
+
+```bash
+npm run validate:products
+```
+
+Valida el CSV y genera reportes sin alterar datos de productos.
+
+```bash
+npm run publish:products
+```
+
+Intenta publicar en `data/products.json`. El script bloquea la publicación si detecta errores o advertencias críticas en categoría, marca, color o imagen.
 
 ## Recomendaciones para imágenes
 

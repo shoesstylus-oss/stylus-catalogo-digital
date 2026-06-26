@@ -1,0 +1,286 @@
+[
+  {
+    "id": "t22-1",
+    "sku": "T22-1",
+    "nombre": "Producto T22-1",
+    "marca": "Pendiente",
+    "categoría": "Pendiente",
+    "género": "Pendiente",
+    "color": "Pendiente",
+    "colores": [],
+    "tallas": [
+      "36",
+      "37",
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43"
+    ],
+    "precio": "C$ 1200",
+    "precio_mayorista": "C$ 1100",
+    "estado": "Disponible",
+    "nuevo": false,
+    "destacado": false,
+    "imagen": "assets/products/tenis-deportivo-hombre.svg",
+    "galería": [
+      "assets/products/tenis-deportivo-hombre.svg"
+    ],
+    "descripción": "Datos comerciales iniciales extraídos del diseño Canva DAHLitKfdE0. Completar marca, modelo, color e imágenes reales antes de publicar como producto final."
+  },
+  {
+    "id": "t21-1",
+    "sku": "T21-1",
+    "nombre": "Producto T21-1",
+    "marca": "Pendiente",
+    "categoría": "Pendiente",
+    "género": "Pendiente",
+    "color": "Pendiente",
+    "colores": [],
+    "tallas": [
+      "36",
+      "37",
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43"
+    ],
+    "precio": "C$ 1200",
+    "precio_mayorista": "C$ 1100",
+    "estado": "Disponible",
+    "nuevo": false,
+    "destacado": false,
+    "imagen": "assets/products/tenis-deportivo-hombre.svg",
+    "galería": [
+      "assets/products/tenis-deportivo-hombre.svg"
+    ],
+    "descripción": "Datos comerciales iniciales extraídos del diseño Canva DAHLitKfdE0. Completar marca, modelo, color e imágenes reales antes de publicar como producto final."
+  },
+  {
+    "id": "t655-18",
+    "sku": "T655-18",
+    "nombre": "Producto T655-18",
+    "marca": "Pendiente",
+    "categoría": "Pendiente",
+    "género": "Pendiente",
+    "color": "Pendiente",
+    "colores": [],
+    "tallas": [
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "precio": "C$ 1200",
+    "precio_mayorista": "C$ 1100",
+    "estado": "Disponible",
+    "nuevo": false,
+    "destacado": false,
+    "imagen": "assets/products/tenis-deportivo-hombre.svg",
+    "galería": [
+      "assets/products/tenis-deportivo-hombre.svg"
+    ],
+    "descripción": "Datos comerciales iniciales extraídos del diseño Canva DAHLitKfdE0. Completar marca, modelo, color e imágenes reales antes de publicar como producto final."
+  },
+  {
+    "id": "k998-3",
+    "sku": "K998-3",
+    "nombre": "Producto K998-3",
+    "marca": "Pendiente",
+    "categoría": "Pendiente",
+    "género": "Pendiente",
+    "color": "Pendiente",
+    "colores": [],
+    "tallas": [
+      "36",
+      "37",
+      "38",
+      "39",
+      "40"
+    ],
+    "precio": "C$ 1200",
+    "precio_mayorista": "C$ 1100",
+    "estado": "Disponible",
+    "nuevo": false,
+    "destacado": false,
+    "imagen": "assets/products/tenis-deportivo-hombre.svg",
+    "galería": [
+      "assets/products/tenis-deportivo-hombre.svg"
+    ],
+    "descripción": "Datos comerciales iniciales extraídos del diseño Canva DAHLitKfdE0. Completar marca, modelo, color e imágenes reales antes de publicar como producto final."
+  },
+  {
+    "id": "k991-2",
+    "sku": "K991-2",
+    "nombre": "Producto K991-2",
+    "marca": "Pendiente",
+    "categoría": "Pendiente",
+    "género": "Pendiente",
+    "color": "Pendiente",
+    "colores": [],
+    "tallas": [
+      "36",
+      "37",
+      "38",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "precio": "C$ 1200",
+    "precio_mayorista": "C$ 1100",
+    "estado": "Disponible",
+    "nuevo": false,
+    "destacado": false,
+    "imagen": "assets/products/tenis-deportivo-hombre.svg",
+    "galería": [
+      "assets/products/tenis-deportivo-hombre.svg"
+    ],
+    "descripción": "Datos comerciales iniciales extraídos del diseño Canva DAHLitKfdE0. Completar marca, modelo, color e imágenes reales antes de publicar como producto final."
+  },
+  {
+    "id": "k998-2",
+    "sku": "K998-2",
+    "nombre": "Producto K998-2",
+    "marca": "Pendiente",
+    "categoría": "Pendiente",
+    "género": "Pendiente",
+    "color": "Pendiente",
+    "colores": [],
+    "tallas": [
+      "36",
+      "37",
+      "38",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "precio": "C$ 1200",
+    "precio_mayorista": "C$ 1100",
+    "estado": "Disponible",
+    "nuevo": false,
+    "destacado": false,
+    "imagen": "assets/products/tenis-deportivo-hombre.svg",
+    "galería": [
+      "assets/products/tenis-deportivo-hombre.svg"
+    ],
+    "descripción": "Datos comerciales iniciales extraídos del diseño Canva DAHLitKfdE0. Completar marca, modelo, color e imágenes reales antes de publicar como producto final."
+  },
+  {
+    "id": "k997-3",
+    "sku": "K997-3",
+    "nombre": "Producto K997-3",
+    "marca": "Pendiente",
+    "categoría": "Pendiente",
+    "género": "Pendiente",
+    "color": "Pendiente",
+    "colores": [],
+    "tallas": [
+      "40",
+      "41",
+      "43"
+    ],
+    "precio": "C$ 1200",
+    "precio_mayorista": "C$ 1100",
+    "estado": "Disponible",
+    "nuevo": false,
+    "destacado": false,
+    "imagen": "assets/products/tenis-deportivo-hombre.svg",
+    "galería": [
+      "assets/products/tenis-deportivo-hombre.svg"
+    ],
+    "descripción": "Datos comerciales iniciales extraídos del diseño Canva DAHLitKfdE0. Completar marca, modelo, color e imágenes reales antes de publicar como producto final."
+  },
+  {
+    "id": "k997-1",
+    "sku": "K997-1",
+    "nombre": "Producto K997-1",
+    "marca": "Pendiente",
+    "categoría": "Pendiente",
+    "género": "Pendiente",
+    "color": "Pendiente",
+    "colores": [],
+    "tallas": [
+      "36",
+      "37",
+      "38",
+      "40",
+      "41",
+      "42",
+      "43"
+    ],
+    "precio": "C$ 1200",
+    "precio_mayorista": "C$ 1100",
+    "estado": "Disponible",
+    "nuevo": false,
+    "destacado": false,
+    "imagen": "assets/products/tenis-deportivo-hombre.svg",
+    "galería": [
+      "assets/products/tenis-deportivo-hombre.svg"
+    ],
+    "descripción": "Datos comerciales iniciales extraídos del diseño Canva DAHLitKfdE0. Completar marca, modelo, color e imágenes reales antes de publicar como producto final."
+  },
+  {
+    "id": "k998-1",
+    "sku": "K998-1",
+    "nombre": "Producto K998-1",
+    "marca": "Pendiente",
+    "categoría": "Pendiente",
+    "género": "Pendiente",
+    "color": "Pendiente",
+    "colores": [],
+    "tallas": [
+      "36",
+      "37",
+      "38",
+      "40",
+      "41",
+      "42",
+      "43"
+    ],
+    "precio": "C$ 1200",
+    "precio_mayorista": "C$ 1100",
+    "estado": "Disponible",
+    "nuevo": false,
+    "destacado": false,
+    "imagen": "assets/products/tenis-deportivo-hombre.svg",
+    "galería": [
+      "assets/products/tenis-deportivo-hombre.svg"
+    ],
+    "descripción": "Datos comerciales iniciales extraídos del diseño Canva DAHLitKfdE0. Completar marca, modelo, color e imágenes reales antes de publicar como producto final."
+  },
+  {
+    "id": "k997-6",
+    "sku": "K997-6",
+    "nombre": "Producto K997-6",
+    "marca": "Pendiente",
+    "categoría": "Pendiente",
+    "género": "Pendiente",
+    "color": "Pendiente",
+    "colores": [],
+    "tallas": [
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "precio": "C$ 1200",
+    "precio_mayorista": "C$ 1100",
+    "estado": "Disponible",
+    "nuevo": false,
+    "destacado": false,
+    "imagen": "assets/products/tenis-deportivo-hombre.svg",
+    "galería": [
+      "assets/products/tenis-deportivo-hombre.svg"
+    ],
+    "descripción": "Datos comerciales iniciales extraídos del diseño Canva DAHLitKfdE0. Completar marca, modelo, color e imágenes reales antes de publicar como producto final."
+  }
+]

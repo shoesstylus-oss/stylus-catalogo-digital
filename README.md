@@ -41,7 +41,8 @@ Construir una plataforma comercial moderna para Tiendas STYLUS. La Fase 3 deja d
 ### Fase 6
 
 - Agrega `data/import/products.master.csv` como fuente maestra para migrar productos desde el Catálogo Maestro Canva STYLUS 2026.
-- Agrega script de importación para generar `data/products.json` desde CSV.
+- Agrega script de importación para generar borradores en `data/import/products.generated.json` sin reemplazar el catálogo público.
+- Mantiene `data/products.json` como catálogo público vigente hasta que los productos estén listos para publicación.
 - Genera reportes en `reports/import-report.json` y `reports/import-report.md`.
 - Documenta el flujo sostenible de migración en `docs/migracion-canva.md`.
 
@@ -83,13 +84,21 @@ Para cargas reales, edita `data/import/products.master.csv` y ejecuta:
 npm run import:products
 ```
 
+Este comando genera `data/import/products.generated.json` como borrador de migración. No reemplaza el catálogo público.
+
 Para validar sin alterar `data/products.json`, ejecuta:
 
 ```bash
 npm run validate:products
 ```
 
-El archivo `data/products.json` es generado por el script de importación. Cada producto debe incluir:
+Para publicar en `data/products.json`, usa solamente:
+
+```bash
+npm run publish:products
+```
+
+La publicación se bloquea si existen errores o advertencias críticas de categoría, marca, color o imagen. Cada producto debe incluir:
 
 - `id`
 - `sku`
