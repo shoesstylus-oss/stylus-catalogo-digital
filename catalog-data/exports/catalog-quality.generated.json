@@ -1,0 +1,40 @@
+{
+  "generatedAt": "2026-06-27T05:10:04.974Z",
+  "source": {
+    "enriched": "catalog-data/exports/stylus-products.enriched.json",
+    "kordata": "catalog-data/exports/kordata-products.generated.json",
+    "enrichment": "catalog-data/enrichment/products.enrichment.csv",
+    "imageMap": "catalog-data/images/image-map.csv",
+    "metadata": {
+      "kordataFilePresent": true,
+      "enrichmentRows": 0,
+      "imageMapRows": 0
+    }
+  },
+  "publicCatalogTouched": false,
+  "totals": {
+    "totalProductosEvaluados": 0,
+    "productosConStock": 0,
+    "productosSinStock": 0,
+    "productosConImagen": 0,
+    "productosSinImagen": 0,
+    "productosConImagenKordataAzure": 0,
+    "productosConImagenManualStylus": 0,
+    "productosConImagenDesdeEnrichment": 0,
+    "productosConEnriquecimientoCompleto": 0,
+    "productosPendientes": 0,
+    "productosEnRevision": 0,
+    "productosPublicables": 0,
+    "productosNoPublicables": 0,
+    "porcentajeCoberturaImagen": 0,
+    "porcentajeProductosPublicables": 0,
+    "porcentajeEnriquecimientoCompleto": 0
+  },
+  "byBrand": [],
+  "byCategory": [],
+  "productsWithQualityScore": [],
+  "missingImages": [],
+  "highStockMissingImage": [],
+  "almostReady": [],
+  "notPublicable": []
+}
