@@ -67,7 +67,8 @@ El preview no debe modificar `data/products.json`. La publicacion final requiere
 
 ## Seguridad
 
-- No versionar archivos Excel reales si contienen informacion operativa sensible.
+- No versionar el Excel real completo de Kordata si contiene informacion operativa sensible, inventario vigente, costos, proveedores, URLs privadas o datos internos.
+- Usar solo muestras controladas y ficticias para pruebas versionadas.
 - No guardar credenciales, cookies ni tokens.
 - No descargar imagenes.
 - No publicar automaticamente.

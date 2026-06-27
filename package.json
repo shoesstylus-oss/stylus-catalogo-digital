@@ -9,6 +9,7 @@
     "validate:products": "node scripts/import-products.mjs --validate-only",
     "import:kordata": "node integrations/kordata/import-kordata-inventory.mjs",
     "import:kordata:images": "node integrations/kordata/import-kordata-images.mjs",
+    "test:kordata:images:sample": "node integrations/kordata/verify-kordata-images-sample.mjs",
     "test:kordata:sample": "node integrations/kordata/verify-kordata-sample.mjs",
     "enrich:products": "node integrations/stylus/enrich-products.mjs",
     "test:enrichment:sample": "node integrations/stylus/verify-enrichment-sample.mjs",
